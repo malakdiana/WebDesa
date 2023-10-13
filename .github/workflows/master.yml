@@ -17,3 +17,4 @@ jobs:
         server: ftp.kopikoopen.com
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
+        server-dir: /home/n1807597/public_html/webDesa

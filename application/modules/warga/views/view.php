@@ -39,7 +39,7 @@
           <td><?=$pekerjaan?></td>
         </tr>
         <tr>
-          <td>Gol darah</td>
+          <td>Golongan darah</td>
           <td><?=$gol_darah?></td>
         </tr>
         <tr>
@@ -95,11 +95,11 @@
           <td><?=is_image($image)?></td>
         </tr>
         <tr>
-          <td>Createdat</td>
+          <td>Created at</td>
           <td><?=$createdat != "" ? date('d-m-Y H:i',strtotime($createdat)):""?></td>
         </tr>
         <tr>
-          <td>Modified</td>
+          <td>Modified at</td>
           <td><?=$modified != "" ? date('d-m-Y H:i',strtotime($modified)):""?></td>
         </tr>
         </table>

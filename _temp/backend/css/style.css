@@ -22460,9 +22460,11 @@ select.border-dark.tt-hint:focus {
 }
 
 .form-group .file-upload-default {
-  visibility: hidden;
+  /* visibility: hidden; */
+  display:none;
   position: absolute;
 }
+
 
 .form-group .file-upload-info {
   background: transparent;

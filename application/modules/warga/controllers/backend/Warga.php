@@ -65,19 +65,19 @@ function json()
                 $rows[] = $row->email;
                 $rows[] = $row->alamat;
                 $rows[] = $row->status_rumah;
-                $rows[] = is_image($row->image);
+                $rows[] = is_image($row->image,'','width:auto;height:40px');
                 $rows[] = date("d-m-Y H:i",  strtotime($row->createdat));
                 $rows[] = date("d-m-Y H:i",  strtotime($row->modified));
         
         $rows[] = '
                   <div class="btn-group" role="group" aria-label="Basic example">
-                      <a href="'.url("warga/detail/".enc_url($row->NIK)).'" id="detail" class="btn btn-primary" title="'.cclang("detail").'">
+                      <a href="'.url("warga/detail/".enc_url($row->tes)).'" id="detail" class="btn btn-primary" title="'.cclang("detail").'">
                         <i class="mdi mdi-file"></i>
                       </a>
-                      <a href="'.url("warga/update/".enc_url($row->NIK)).'" id="update" class="btn btn-warning" title="'.cclang("update").'">
+                      <a href="'.url("warga/update/".enc_url($row->tes)).'" id="update" class="btn btn-warning" title="'.cclang("update").'">
                         <i class="ti-pencil"></i>
                       </a>
-                      <a href="'.url("warga/delete/".enc_url($row->NIK)).'" id="delete" class="btn btn-danger" title="'.cclang("delete").'">
+                      <a href="'.url("warga/delete/".enc_url($row->tes)).'" id="delete" class="btn btn-danger" title="'.cclang("delete").'">
                         <i class="ti-trash"></i>
                       </a>
                     </div>
@@ -233,6 +233,7 @@ function add_action()
       $save_data['email'] = $this->input->post('email',true);
       $save_data['alamat'] = $this->input->post('alamat',true);
       $save_data['status_rumah'] = $this->input->post('status_rumah',true);
+      $save_data['createdat'] = date('Y-m-d H:i:s');
       $save_data['image'] = $this->imageCopy($this->input->post('image',true),$_POST['file-dir-image']);
 
       if($post['nik_ayah'] != 0){
@@ -352,6 +353,7 @@ function update_action($id)
       $save_data['email'] = $this->input->post('email',true);
       $save_data['alamat'] = $this->input->post('alamat',true);
       $save_data['status_rumah'] = $this->input->post('status_rumah',true);
+      $save_data['modified'] = date('Y-m-d H:i:s');
       $save_data['image'] = $this->imageCopy($this->input->post('image',true),$_POST['file-dir-image']);
 
       $save = $this->model->change(dec_url($id), $save_data);

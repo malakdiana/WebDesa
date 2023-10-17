@@ -95,9 +95,10 @@ class User extends Backend{
 
 function add()
 {
+  $tes = 'tes';
   $this->is_allowed('user_add');
   $this->template->set_title(cclang("add")." user");
-  $data = array('action' => url("User/add_action"),
+  $data = array('action' => url("user/add_action"),
                 'button' => "save",
                 'nama' => set_value("nama"),
                 'email' => set_value("email"),

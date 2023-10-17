@@ -22,14 +22,8 @@
 
 <div class="tab-content">
     <div class="tab-pane p-3 active show" id="awesome" role="tabpanel">
-<<<<<<< HEAD
-      <section>
-        <div class="icon-demo-content row">
-       
-=======
         <section>
             <div class="icon-demo-content row">
->>>>>>> 66eb8e470e09a3ec6ca4809afc366e3b078e6ed6
                 <div class="col-sm-6 col-md-4 col-lg-3">
                     <i class="fa fa-address-book"></i> fa fa-address-book
                 </div>
@@ -40,7 +34,6 @@
                     <i class="fa fa-address-card"></i> fa fa-address-card
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-3">
-<<<<<<< HEAD
                 <i class="fa fa-address-card-o"></i> fa fa-address-card-o
                  </div>
     
@@ -198,7 +191,7 @@
             <div class="col-sm-6 col-md-4 col-lg-3">
                 <i class="fa fa-wpexplorer"></i> fa fa-wpexplorer
             </div>
-=======
+
                     <i class="fa fa-address-card-o"></i> fa fa-address-card-o
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-3">
@@ -354,7 +347,7 @@
                 <div class="col-sm-6 col-md-4 col-lg-3">
                     <i class="fa fa-wpexplorer"></i> fa fa-wpexplorer
                 </div>
->>>>>>> 66eb8e470e09a3ec6ca4809afc366e3b078e6ed6
+
 
             </div>
         </section>

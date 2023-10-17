@@ -33,7 +33,6 @@
               <table class="table display" name="table" id="table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                   <tr>
-<<<<<<< HEAD
 							<th>NIK</th>
 							<th>Nama lengkap</th>
 							<th>Tempat lahir</th>
@@ -59,32 +58,6 @@
 							<th>Image</th>
 							<th>Createdat</th>
 							<th>Modified</th>
-=======
-                    <th>NIK</th>
-                    <th>Nama lengkap</th>
-                    <th>Tempat lahir</th>
-                    <th>Tgl lahir</th>
-                    <th>Jenis kelamin</th>
-                    <th>Agama</th>
-                    <th>Pendidikan</th>
-                    <th>Pekerjaan</th>
-                    <th>Gol darah</th>
-                    <th>Cacat</th>
-                    <th>Status kawin</th>
-                    <th>Hubungan keluarga</th>
-                    <th>Warga negara</th>
-                    <th>Suku</th>
-                    <th>NIK Ayah</th>
-                    <th>NIK ibu</th>
-                    <th>Status kependudukan</th>
-                    <th>Nomor HP</th>
-                    <th>Email</th>
-                    <th>Alamat</th>
-                    <th>Status rumah</th>
-                    <th>Image</th>
-                    <th>Createdat</th>
-                    <th>Modified</th>
->>>>>>> 66eb8e470e09a3ec6ca4809afc366e3b078e6ed6
                     <th>#</th>
                   </tr>
                 </thead>
@@ -291,27 +264,18 @@
           "targets": 21,
           "orderable": false
         },
-
-<<<<<<< HEAD
-					{
-            "targets": 23,
-            "orderable": false
-          },
-          {
-            "targets": 24,
-            "orderable": false
-          },
-=======
         {
           "targets": 22,
           "orderable": false
         },
-
         {
           "targets": 23,
           "orderable": false
         },
->>>>>>> 66eb8e470e09a3ec6ca4809afc366e3b078e6ed6
+        {
+          "targets": 24,
+          "orderable": false
+        },
 
         {
           "className": "text-center",

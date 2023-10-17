@@ -9,7 +9,11 @@
 
           <div class="form-group">
             <label>NIK</label>
-            <input type="number" class="form-control form-control-sm" placeholder="NIK" name="NIK" id="NIK">
+            <!--
+              app_helper.php - methode is_select
+              is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
+            --->
+            <?=is_select("personal","NIK","NIK","NIK");?>
           </div>
 
           <div class="form-group">
@@ -19,7 +23,7 @@
 
           <div class="form-group">
             <label>Dokumen</label>
-            <input type="file" name="img" class="file-upload-default" data-id="dokumen"/>
+            <input type="file" name="img" class="file-upload-default" data-id="dokumen" style="display: none;"/>
             <div class="input-group col-xs-12">
               <input type="hidden" class="file-dir" name="file-dir-dokumen" data-id="dokumen"/>
               <input type="text" class="form-control form-control-sm file-upload-info file-name" data-id="dokumen" placeholder="Dokumen" readonly name="dokumen" />

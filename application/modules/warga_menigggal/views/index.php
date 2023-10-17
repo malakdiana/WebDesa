@@ -15,8 +15,14 @@
             <form autocomplete="off" class="content-filter">
               <div class="row">
                                   <div class="form-group col-md-6">
-                                          <input type="text" id="NIK" class="form-control form-control-sm" placeholder="NIK" />
+                                          <!--
+                          app_helper.php - methode is_select
+                          is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
+                        --->
+                      <?=is_select_filter("personal","NIK","NIK","NIK","NIK");?>
                                       </div>
+
+                                  
 
                               </div>
               <div class="pull-right">
@@ -70,6 +76,9 @@
         "type": "POST",
          "data": function(data) {
                                           data.NIK = $("#NIK").val();
+                                                        data.tgl_meninggal = $("#tgl_meninggal").val();
+                                                        data.dokumen = $("#dokumen").val();
+                                                        data.keterangan = $("#keterangan").val();
                                     }
               },
 
@@ -106,6 +115,9 @@
 
     $("#reload").click(function() {
                         $("#NIK").val("");
+                  $("#tgl_meninggal").val("");
+                  $("#dokumen").val("");
+                  $("#keterangan").val("");
                     table.ajax.reload();
     });
 

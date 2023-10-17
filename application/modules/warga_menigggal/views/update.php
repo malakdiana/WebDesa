@@ -9,7 +9,11 @@
           
           <div class="form-group">
             <label>NIK</label>
-            <input type="number" class="form-control form-control-sm" placeholder="NIK" name="NIK" id="NIK" value="<?=$NIK?>">
+            <!--
+              app_helper.php - methode is_select
+              is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
+            --->
+            <?=is_select("personal","NIK","NIK","NIK","$NIK");?>
           </div>
         
           <div class="form-group">

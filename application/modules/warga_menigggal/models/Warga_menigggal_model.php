@@ -8,7 +8,7 @@
 /*| instagram :  */
 /*| youtube :  */
 /*| --------------------------------------------------------------------------*/
-/*| Generate By M-CRUD Generator 17/10/2023 04:40*/
+/*| Generate By M-CRUD Generator 17/10/2023 15:05*/
 /*| Please DO NOT modify this information*/
 
 
@@ -37,10 +37,26 @@ public function __construct()
     {
       $this->db->select($this->select);
       $this->db->from($this->table);
+      $this->_get_join();
 
     if($this->input->post("NIK"))
         {
           $this->db->like("warga_menigggal.NIK", $this->input->post("NIK"));
+        }
+
+    if($this->input->post("tgl_meninggal"))
+        {
+          $this->db->like("warga_menigggal.tgl_meninggal", date('Y-m-d',strtotime($this->input->post("tgl_meninggal"))));
+        }
+
+    if($this->input->post("dokumen"))
+        {
+          $this->db->like("warga_menigggal.dokumen", $this->input->post("dokumen"));
+        }
+
+    if($this->input->post("keterangan"))
+        {
+          $this->db->like("warga_menigggal.keterangan", $this->input->post("keterangan"));
         }
 
       if(isset($_POST['order'])) // here order processing
@@ -76,10 +92,30 @@ public function __construct()
     {
       $this->db->select($this->select);
       $this->db->from("$this->table");
+      $this->_get_join();
       return $this->db->count_all_results();
     }
 
+    public function _get_join()
+    {
+      $this->db->select("personal.NIK");
+      $this->db->join("personal","personal.NIK = warga_menigggal.NIK","left");
+    }
 
+    public function get_detail($id)
+    {
+        $this->db->select("".$this->table.".*");
+        $this->db->from($this->table);
+        $this->_get_join();
+        $this->db->where("".$this->table.'.'.$this->primary_key,$id);
+        $query = $this->db->get();
+        if($query->num_rows()>0)
+        {
+          return $query->row();
+        }else{
+          return FALSE;
+        }
+    }
 
 }
 

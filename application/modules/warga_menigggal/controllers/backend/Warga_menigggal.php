@@ -7,7 +7,7 @@
 /*| instagram :  */
 /*| youtube :  */
 /*| --------------------------------------------------------------------------*/
-/*| Generate By M-CRUD Generator 17/10/2023 04:40*/
+/*| Generate By M-CRUD Generator 17/10/2023 15:05*/
 /*| Please DO NOT modify this information*/
 
 
@@ -46,7 +46,7 @@ function json()
         $rows = array();
                 $rows[] = $row->NIK;
                 $rows[] = date("d-m-Y",  strtotime($row->tgl_meninggal));
-                $rows[] = is_image($row->dokumen);
+                $rows[] = is_image($row->dokumen,'','width:auto;height:40px');
                 $rows[] = $row->keterangan;
         
         $rows[] = '
@@ -90,7 +90,7 @@ function filter()
 function detail($id)
 {
   $this->is_allowed('warga_menigggal_detail');
-    if ($row = $this->model->find(dec_url($id))) {
+    if ($row = $this->model->get_detail(dec_url($id))) {
     $this->template->set_title("Detail ".$this->title);
     $data = array(
           "NIK" => $row->NIK,

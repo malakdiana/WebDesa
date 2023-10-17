@@ -91,6 +91,10 @@
           <td><?=$status_rumah?></td>
         </tr>
         <tr>
+          <td>Lingkungan</td>
+          <td><?=$id_lingkungan?></td>
+        </tr>
+        <tr>
           <td>Image</td>
           <td><?=is_image($image)?></td>
         </tr>

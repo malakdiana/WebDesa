@@ -6,6 +6,7 @@
         <div class="card-header">
           <h4 class="card-title"><?=ucwords($title_module)?></h4>
           <div class="pull-right">
+          <a href="<?=url("warga/cetak")?>" class="btn btn-success btn-flat"><i class="fa fa-file btn-icon-prepend"></i> cetak</a>
                           <a href="<?=url("warga/add")?>" class="btn btn-success btn-flat"><i class="fa fa-file btn-icon-prepend"></i> Add</a>
                                       <button type="button" id="filter-show" class="btn btn-primary btn-flat"><i class="mdi mdi-backup-restore btn-icon-prepend"></i> Filter</button>
                       </div>
@@ -53,6 +54,7 @@
 							<th>Email</th>
 							<th>Alamat</th>
 							<th>Status rumah</th>
+              <th>Nama Lingkungan</th>
 							<th>Image</th>
 							<th>Createdat</th>
 							<th>Modified</th>
@@ -220,11 +222,15 @@
             "targets": 23,
             "orderable": false
           },
+          {
+            "targets": 24,
+            "orderable": false
+          },
 
         {
           "className": "text-center",
           "orderable": false,
-          "targets": 24
+          "targets": 25
         },
       ],
     });

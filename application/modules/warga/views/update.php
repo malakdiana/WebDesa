@@ -153,6 +153,15 @@
             <label>Status rumah</label>
             <input type="text" class="form-control form-control-sm" placeholder="Status rumah" name="status_rumah" id="status_rumah" value="<?=$status_rumah?>">
           </div>
+
+          <div class="form-group">
+            <label>Lingkungan</label>
+            <!--
+              app_helper.php - methode is_select
+              is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
+            --->
+            <?=is_select("lingkungan","id_lingkungan","kode","nama_lingkungan","$id_lingkungan");?>
+          </div>
         
           <div class="form-group">
             <label>Image</label>

@@ -32,6 +32,12 @@ function index()
   $this->template->view("index");
 }
 
+function cetak(){
+  $data['cetak'] = 'tes';
+  $this->load->library('mypdf');
+  $this->mypdf->generate('dompdf');
+}
+
 function json()
 {
   if ($this->input->is_ajax_request()) {
@@ -65,6 +71,7 @@ function json()
                 $rows[] = $row->email;
                 $rows[] = $row->alamat;
                 $rows[] = $row->status_rumah;
+                $rows[] = $row->nama_lingkungan;
                 $rows[] = is_image($row->image,'','width:auto;height:40px');
                 $rows[] = date("d-m-Y H:i",  strtotime($row->createdat));
                 $rows[] = date("d-m-Y H:i",  strtotime($row->modified));
@@ -135,6 +142,7 @@ function detail($id)
           "alamat" => $row->alamat,
           "status_rumah" => $row->status_rumah,
           "image" => $row->image,
+          "id_lingkungan" => $row->id_lingkungan,
           "createdat" => $row->createdat,
           "modified" => $row->modified,
     );
@@ -171,6 +179,7 @@ function add()
                   'alamat' => set_value("alamat"),
                   'status_rumah' => set_value("status_rumah"),
                   'image' => set_value("image"),
+                  'id_lingkungan' => set_value("id_lingkungan"),
                   );
   $this->template->view("add",$data);
 }
@@ -233,6 +242,7 @@ function add_action()
       $save_data['email'] = $this->input->post('email',true);
       $save_data['alamat'] = $this->input->post('alamat',true);
       $save_data['status_rumah'] = $this->input->post('status_rumah',true);
+      $save_data['id_lingkungan'] = $this->input->post('id_lingkungan',true);
       $save_data['createdat'] = date('Y-m-d H:i:s');
       $save_data['image'] = $this->imageCopy($this->input->post('image',true),$_POST['file-dir-image']);
 
@@ -291,6 +301,7 @@ function update($id)
                   'alamat' => set_value("alamat", $row->alamat),
                   'status_rumah' => set_value("status_rumah", $row->status_rumah),
                   'image' => set_value("image", $row->image),
+                  'id_lingkungan' => set_value("id_lingkungan", $row->id_lingkungan),
                   );
     $this->template->view("update",$data);
   }else {
@@ -353,6 +364,7 @@ function update_action($id)
       $save_data['email'] = $this->input->post('email',true);
       $save_data['alamat'] = $this->input->post('alamat',true);
       $save_data['status_rumah'] = $this->input->post('status_rumah',true);
+      $save_data['id_lingkungan'] = $this->input->post('id_lingkungan',true);
       $save_data['modified'] = date('Y-m-d H:i:s');
       $save_data['image'] = $this->imageCopy($this->input->post('image',true),$_POST['file-dir-image']);
 

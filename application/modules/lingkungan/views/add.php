@@ -23,7 +23,7 @@
               app_helper.php - methode is_radio
               is_radio("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
             --->
-            <?=is_radio("personal","nik_kepling","NIK","NIK");?>
+            <?=is_select("personal","nik_kepling","NIK","NIK");?>
           </div>
 
           <div class="form-group">

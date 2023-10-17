@@ -16,9 +16,9 @@ class Warga_model extends MY_Model{
 
   private $table        = "personal";
   private $primary_key  = "NIK";
-  private $column_order = array('NIK', 'nama_lengkap', 'tempat_lahir', 'tgl_lahir', 'jenis_kelamin', 'agama', 'pendidikan', 'pekerjaan', 'gol_darah', 'cacat', 'status_kawin', 'hub_keluarga', 'warga_negara', 'suku', 'nik_ayah', 'nik_ibu', 'status_kependudukan', 'hp', 'email', 'alamat', 'status_rumah', 'image', 'createdat', 'modified');
+  private $column_order = array('NIK', 'nama_lengkap', 'tempat_lahir', 'tgl_lahir', 'jenis_kelamin', 'agama', 'pendidikan', 'pekerjaan', 'gol_darah', 'cacat', 'status_kawin', 'hub_keluarga', 'warga_negara', 'suku', 'nik_ayah', 'nik_ibu', 'status_kependudukan', 'hp', 'email', 'alamat', 'status_rumah', 'image','id_lingkungan', 'createdat', 'modified');
   private $order        = array('personal.NIK'=>"DESC");
-  private $select       = "personal.NIK as tes,personal.NIK,personal.nama_lengkap,personal.tempat_lahir,personal.tgl_lahir,personal.jenis_kelamin,personal.agama,personal.pendidikan,personal.pekerjaan,personal.gol_darah,personal.cacat,personal.status_kawin,personal.hub_keluarga,personal.warga_negara,personal.suku,personal.nik_ayah as ayah,personal.nik_ibu as ibu,personal.status_kependudukan,personal.hp,personal.email,personal.alamat,personal.status_rumah,personal.image,personal.createdat,personal.modified";
+  private $select       = "personal.NIK as tes,personal.NIK,personal.nama_lengkap,personal.tempat_lahir,personal.tgl_lahir,personal.jenis_kelamin,personal.agama,personal.pendidikan,personal.pekerjaan,personal.gol_darah,personal.cacat,personal.status_kawin,personal.hub_keluarga,personal.warga_negara,personal.suku,personal.nik_ayah as ayah,personal.nik_ibu as ibu,personal.status_kependudukan,personal.hp,personal.email,personal.alamat,personal.status_rumah,personal.image,lingkungan.nama_lingkungan,personal.createdat,personal.modified";
 
 public function __construct()
 	{
@@ -92,6 +92,8 @@ public function __construct()
       $this->db->join("personal p ","p.NIK = personal.nik_ayah","left");
       $this->db->select("p2.NIK");
       $this->db->join("personal p2","p2.NIK = personal.nik_ibu","left");
+      $this->db->select("lingkungan.kode");
+      $this->db->join("lingkungan","lingkungan.kode = personal.id_lingkungan","left");
     }
 
     public function get_detail($id)

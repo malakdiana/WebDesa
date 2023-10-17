@@ -24,18 +24,21 @@
     <div class="tab-pane p-3 active show" id="awesome" role="tabpanel">
       <section>
         <div class="icon-demo-content row">
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <i class="fa fa-address-book"></i> fa fa-address-book
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <i class="fa fa-address-book-o"></i> fa fa-address-book-o
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <i class="fa fa-address-card"></i> fa fa-address-card
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
+       
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <i class="fa fa-address-book"></i> fa fa-address-book
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <i class="fa fa-address-book-o"></i> fa fa-address-book-o
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <i class="fa fa-address-card"></i> fa fa-address-card
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
                 <i class="fa fa-address-card-o"></i> fa fa-address-card-o
-            </div>
+                 </div>
+    
+            
             <div class="col-sm-6 col-md-4 col-lg-3">
                 <i class="fa fa-bandcamp"></i> fa fa-bandcamp
             </div>

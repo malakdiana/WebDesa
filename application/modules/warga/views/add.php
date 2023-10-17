@@ -155,6 +155,16 @@
           </div>
 
           <div class="form-group">
+            <label>lingkungan</label>
+            <!--
+              app_helper.php - methode is_select
+              is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
+            --->
+            <?=is_select("lingkungan","id_lingkungan","kode","nama_lingkungan");?>
+          </div>
+
+
+          <div class="form-group">
             <label>Image</label>
             <input type="file" name="img" class="file-upload-default" data-id="image" style="display: none;"/>
             <div class="input-group col-xs-12">

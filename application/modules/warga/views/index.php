@@ -6,17 +6,10 @@
         <div class="card-header">
           <h4 class="card-title"><?= ucwords($title_module) ?></h4>
           <div class="pull-right">
-<<<<<<< HEAD
-          <a href="<?=url("warga/cetak")?>" class="btn btn-success btn-flat"><i class="fa fa-file btn-icon-prepend"></i> cetak</a>
-                          <a href="<?=url("warga/add")?>" class="btn btn-success btn-flat"><i class="fa fa-file btn-icon-prepend"></i> Add</a>
-                                      <button type="button" id="filter-show" class="btn btn-primary btn-flat"><i class="mdi mdi-backup-restore btn-icon-prepend"></i> Filter</button>
-                      </div>
-=======
             <a href="<?= url("warga/add") ?>" class="btn btn-success btn-flat"><i class="fa fa-file btn-icon-prepend"></i> Add</a>
             <button class="btn btn-secondary btn-flat" data-toggle="modal" data-target="#modalImport"><i class="fa fa-file-excel-o btn-icon-prepend"></i> Import</button>
             <button type="button" id="filter-show" class="btn btn-primary btn-flat"><i class="mdi mdi-backup-restore btn-icon-prepend"></i> Filter</button>
           </div>
->>>>>>> 66eb8e470e09a3ec6ca4809afc366e3b078e6ed6
         </div>
         <div class="card-content">
           <div class="card-body card-dashboard">

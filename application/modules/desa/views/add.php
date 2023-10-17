@@ -8,8 +8,32 @@
           <form action="<?=$action?>" id="form" autocomplete="off">
 
           <div class="form-group">
-            <label>NIK</label>
-            <input type="number" class="form-control form-control-sm" placeholder="NIK" name="NIK" id="NIK">
+            <label>Nama desa</label>
+            <input type="text" class="form-control form-control-sm" placeholder="Nama desa" name="nama_desa" id="nama_desa">
+          </div>
+
+          <div class="form-group">
+            <label>Kecamatan</label>
+            <input type="text" class="form-control form-control-sm" placeholder="Kecamatan" name="kecamatan" id="kecamatan">
+          </div>
+
+          <div class="form-group">
+            <label>Kota</label>
+            <input type="text" class="form-control form-control-sm" placeholder="Kota" name="kota" id="kota">
+          </div>
+
+          <div class="form-group">
+            <label>Logo</label>
+            <input type="file" name="img" class="file-upload-default" data-id="logo" style="display: none;"/>
+            <div class="input-group col-xs-12">
+              <input type="hidden" class="file-dir" name="file-dir-logo" data-id="logo"/>
+              <input type="text" class="form-control form-control-sm file-upload-info file-name" data-id="logo" placeholder="Logo" readonly name="logo" />
+            <span class="input-group-append">
+              <button class="btn-remove-image btn btn-danger btn-sm" type="button" data-id="logo" style="display:<?=$logo!=''?'block':'none'?>;"><i class="ti-trash"></i></button>
+              <button class="file-upload-browse btn btn-primary btn-sm" data-id="logo" type="button">Select File</button>
+            </span>
+            </div>
+            <div id="logo"></div>
           </div>
 
           <input type="hidden" name="submit" value="add">

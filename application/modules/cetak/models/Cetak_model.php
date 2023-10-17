@@ -8,17 +8,17 @@
 /*| instagram :  */
 /*| youtube :  */
 /*| --------------------------------------------------------------------------*/
-/*| Generate By M-CRUD Generator 17/10/2023 04:40*/
+/*| Generate By M-CRUD Generator 17/10/2023 15:13*/
 /*| Please DO NOT modify this information*/
 
 
-class Warga_menigggal_model extends MY_Model{
+class Cetak_model extends MY_Model{
 
-  private $table        = "warga_menigggal";
+  private $table        = "personal";
   private $primary_key  = "NIK";
-  private $column_order = array('NIK', 'tgl_meninggal', 'dokumen', 'keterangan');
-  private $order        = array('warga_menigggal.NIK'=>"DESC");
-  private $select       = "warga_menigggal.NIK,warga_menigggal.NIK,warga_menigggal.tgl_meninggal,warga_menigggal.dokumen,warga_menigggal.keterangan";
+  private $column_order = array('NIK', 'nama_lengkap', 'tempat_lahir', 'tgl_lahir', 'jenis_kelamin', 'agama', 'pendidikan', 'pekerjaan', 'gol_darah', 'cacat', 'status_kawin', 'hub_keluarga', 'warga_negara', 'suku', 'nik_ayah', 'nik_ibu', 'status_kependudukan', 'hp', 'email', 'alamat', 'status_rumah', 'image','id_lingkungan', 'createdat', 'modified');
+  private $order        = array('personal.NIK'=>"DESC");
+  private $select       = "personal.NIK as tes,personal.NIK,personal.nama_lengkap,personal.tempat_lahir,personal.tgl_lahir,personal.jenis_kelamin,personal.agama,personal.pendidikan,personal.pekerjaan,personal.gol_darah,personal.cacat,personal.status_kawin,personal.hub_keluarga,personal.warga_negara,personal.suku,personal.nik_ayah as ayah,personal.nik_ibu as ibu,personal.status_kependudukan,personal.hp,personal.email,personal.alamat,personal.status_rumah,personal.image,lingkungan.nama_lingkungan,personal.createdat,personal.modified";
 
 public function __construct()
 	{
@@ -37,10 +37,16 @@ public function __construct()
     {
       $this->db->select($this->select);
       $this->db->from($this->table);
+      $this->_get_join();
 
     if($this->input->post("NIK"))
         {
-          $this->db->like("warga_menigggal.NIK", $this->input->post("NIK"));
+          $this->db->like("personal.NIK", $this->input->post("NIK"));
+        }
+
+    if($this->input->post("nama_lengkap"))
+        {
+          $this->db->like("personal.nama_lengkap", $this->input->post("nama_lengkap"));
         }
 
       if(isset($_POST['order'])) // here order processing
@@ -76,12 +82,38 @@ public function __construct()
     {
       $this->db->select($this->select);
       $this->db->from("$this->table");
+      $this->_get_join();
       return $this->db->count_all_results();
+    }
+
+    public function _get_join()
+    {
+      $this->db->select("p.NIK");
+      $this->db->join("personal p ","p.NIK = personal.nik_ayah","left");
+      $this->db->select("p2.NIK");
+      $this->db->join("personal p2","p2.NIK = personal.nik_ibu","left");
+      $this->db->select("lingkungan.kode");
+      $this->db->join("lingkungan","lingkungan.kode = personal.id_lingkungan","left");
+    }
+
+    public function get_detail($id)
+    {
+        $this->db->select("".$this->table.".*");
+        $this->db->from($this->table);
+        $this->_get_join();
+        $this->db->where("".$this->table.'.'.$this->primary_key,$id);
+        $query = $this->db->get();
+        if($query->num_rows()>0)
+        {
+          return $query->row();
+        }else{
+          return FALSE;
+        }
     }
 
 
 
 }
 
-/* End of file Warga_menigggal_model.php */
-/* Location: ./application/modules/warga_menigggal/models/Warga_menigggal_model.php */
+/* End of file Cetak_model.php */
+/* Location: ./application/modules/cetak/models/Cetak_model.php */

@@ -7,8 +7,20 @@
       <div class="card-body">
         <table class="table table-bordered table-striped">
         <tr>
-          <td>NIK</td>
-          <td><?=$NIK?></td>
+          <td>Nama desa</td>
+          <td><?=$nama_desa?></td>
+        </tr>
+        <tr>
+          <td>Kecamatan</td>
+          <td><?=$kecamatan?></td>
+        </tr>
+        <tr>
+          <td>Kota</td>
+          <td><?=$kota?></td>
+        </tr>
+        <tr>
+          <td>Logo</td>
+          <td><?=is_image($logo)?></td>
         </tr>
         </table>
 

@@ -2,10 +2,10 @@
   <div class="col-md-12 col-xl-10 mx-auto animated fadeIn delay-2s">
     <div class="card m-b-30">
       <div class="card-header bg-primary text-white">
-        <?=ucwords($title_module)?>
+        <?= ucwords($title_module) ?>
       </div>
       <div class="card-body">
-          <form action="<?=$action?>" id="form" autocomplete="off">
+        <form action="<?= $action ?>" id="form" autocomplete="off">
 
           <div class="form-group">
             <label>NIK</label>
@@ -61,7 +61,19 @@
 
           <div class="form-group">
             <label>Pendidikan</label>
-            <input type="text" class="form-control form-control-sm" placeholder="Pendidikan" name="pendidikan" id="pendidikan">
+            <!-- <input type="text" class="form-control form-control-sm" placeholder="Pendidikan" name="pendidikan" id="pendidikan"> -->
+            <select name="pendidikan" data-placeholder="-- Select -- " class="form-control form-control-sm select2" id="pendidikan">
+              <option value=""></option>
+              <option value="SD">SD</option>
+              <option value="SMP">SMP</option>
+              <option value="SMA/SMK">SMA/SMK</option>
+              <option value="Diploma 1">Diploma 1</option>
+              <option value="Diploma 2">Diploma 2</option>
+              <option value="Diploma 3">Diploma 3</option>
+              <option value="Diploma 4">Diploma 4</option>
+              <option value="S1">S1</option>
+              <option value="S2">S2</option>
+            </select>
           </div>
 
           <div class="form-group">
@@ -117,7 +129,7 @@
               app_helper.php - methode is_select
               is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
             --->
-            <?=is_select("personal","nik_ayah","NIK","NIK");?>
+            <?= is_select("personal", "nik_ayah", "NIK", "NIK"); ?>
           </div>
 
           <div class="form-group">
@@ -126,7 +138,7 @@
               app_helper.php - methode is_select
               is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
             --->
-            <?=is_select("personal","nik_ibu","NIK","NIK");?>
+            <?= is_select("personal", "nik_ibu", "NIK", "NIK"); ?>
           </div>
 
           <div class="form-group">
@@ -156,14 +168,14 @@
 
           <div class="form-group">
             <label>Image</label>
-            <input type="file" name="img" class="file-upload-default" data-id="image" style="display: none;"/>
+            <input type="file" name="img" class="file-upload-default" data-id="image" style="display: none;" />
             <div class="input-group col-xs-12">
-              <input type="hidden" class="file-dir" name="file-dir-image" data-id="image"/>
+              <input type="hidden" class="file-dir" name="file-dir-image" data-id="image" />
               <input type="text" class="form-control form-control-sm file-upload-info file-name" data-id="image" placeholder="Image" readonly name="image" />
-            <span class="input-group-append">
-              <button class="btn-remove-image btn btn-danger btn-sm" type="button" data-id="image" style="display:<?=$image!=''?'block':'none'?>;"><i class="ti-trash"></i></button>
-              <button class="file-upload-browse btn btn-primary btn-sm" data-id="image" type="button">Select File</button>
-            </span>
+              <span class="input-group-append">
+                <button class="btn-remove-image btn btn-danger btn-sm" type="button" data-id="image" style="display:<?= $image != '' ? 'block' : 'none' ?>;"><i class="ti-trash"></i></button>
+                <button class="file-upload-browse btn btn-primary btn-sm" data-id="image" type="button">Select File</button>
+              </span>
             </div>
             <div id="image"></div>
           </div>
@@ -171,8 +183,8 @@
           <input type="hidden" name="submit" value="add">
 
           <div class="text-right">
-            <a href="<?=url($this->uri->segment(2))?>" class="btn btn-sm btn-danger"><?=cclang("cancel")?></a>
-            <button type="submit" id="submit"  class="btn btn-sm btn-primary"><?=cclang("save")?></button>
+            <a href="<?= url($this->uri->segment(2)) ?>" class="btn btn-sm btn-danger"><?= cclang("cancel") ?></a>
+            <button type="submit" id="submit" class="btn btn-sm btn-primary"><?= cclang("save") ?></button>
           </div>
         </form>
       </div>
@@ -182,35 +194,35 @@
 
 
 <script type="text/javascript">
-$("#form").submit(function(e){
-e.preventDefault();
-var me = $(this);
-$("#submit").prop('disabled',true).html('Loading...');
-$(".form-group").find('.text-danger').remove();
-$.ajax({
-      url             : me.attr('action'),
-      type            : 'post',
-      data            :  new FormData(this),
-      contentType     : false,
-      cache           : false,
-      dataType        : 'JSON',
-      processData     :false,
-      success:function(json){
-        if (json.success==true) {
+  $("#form").submit(function(e) {
+    e.preventDefault();
+    var me = $(this);
+    $("#submit").prop('disabled', true).html('Loading...');
+    $(".form-group").find('.text-danger').remove();
+    $.ajax({
+      url: me.attr('action'),
+      type: 'post',
+      data: new FormData(this),
+      contentType: false,
+      cache: false,
+      dataType: 'JSON',
+      processData: false,
+      success: function(json) {
+        if (json.success == true) {
           location.href = json.redirect;
           return;
-        }else {
-          $("#submit").prop('disabled',false)
-                      .html('<?=cclang("save")?>');
+        } else {
+          $("#submit").prop('disabled', false)
+            .html('<?= cclang("save") ?>');
           $.each(json.alert, function(key, value) {
             var element = $('#' + key);
             $(element)
-            .closest('.form-group')
-            .find('.text-danger').remove();
+              .closest('.form-group')
+              .find('.text-danger').remove();
             $(element).after(value);
           });
         }
       }
     });
-});
+  });
 </script>

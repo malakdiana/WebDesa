@@ -54,7 +54,7 @@ function json()
         $rows = array();
         <?php foreach ($show_in_table as $field): ?>
 <?php if(formType($field) == "upload_image"): ?>
-        $rows[] = is_image($row-><?=$field?>);
+        $rows[] = is_image($row-><?=$field?>,'','width:auto;height:40px');
 <?php elseif (formType($field) == "date"): ?>
         $rows[] = date("d-m-Y",  strtotime($row-><?=$field?>));
 <?php elseif(formType($field) == "time"): ?>

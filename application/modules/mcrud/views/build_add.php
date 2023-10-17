@@ -20,7 +20,7 @@
 <?php elseif(formType($field) == "textarea"): ?>
             <textarea class="form-control form-control-sm" placeholder="<?=label($field)?>" name="<?=$field?>" id="<?=$field?>" rows="3" cols="80"></textarea>
 <?php elseif(formType($field) == "upload_image"): ?>
-            <input type="file" name="img" class="file-upload-default" data-id="<?=$field?>"/>
+            <input type="file" name="img" class="file-upload-default" data-id="<?=$field?>" style="display: none;"/>
             <div class="input-group col-xs-12">
               <input type="hidden" class="file-dir" name="file-dir-<?=$field?>" data-id="<?=$field?>"/>
               <input type="text" class="form-control form-control-sm file-upload-info file-name" data-id="<?=$field?>" placeholder="<?=label($field)?>" readonly name="<?=$field?>" />

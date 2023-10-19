@@ -41,15 +41,18 @@ function json()
     }
 
     $list = $this->model->get_datatables();
+    
     $data = array();
     foreach ($list as $row) {
+        $file =  $row->lampiran;
+        $file_types =explode(".",$file);
         $rows = array();
                 $rows[] = $row->NIK;
                 $rows[] = $row->nama_dokumen;
                 $rows[] = $row->nomor;
                 $rows[] = date("d-m-Y",  strtotime($row->tgl_terbit));
                 $rows[] = date("d-m-Y",  strtotime($row->masa_berlaku));
-                $rows[] = is_image($row->lampiran,'','width:auto;height:40px');
+                $rows[] = $file_types[1] =='pdf' ? '<a href="'.base_url("_temp/uploads/img/".$file).'">Download</a>': is_image($row->lampiran,'','width:auto;height:40px');
                 $rows[] = $row->ket;
                 $rows[] = date("d-m-Y H:i",  strtotime($row->createdat));
                 $rows[] = date("d-m-Y H:i",  strtotime($row->modified));

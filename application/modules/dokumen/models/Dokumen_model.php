@@ -33,6 +33,13 @@ public function __construct()
 		parent::__construct($config);
 	}
 
+  public function getTes(){
+      $this->db->select('*');
+      $this->db->from('dokumen');
+      $this->db->where('hint', 'Foto Rumah');
+      return $this->db->get();
+  }
+
   private function _get_datatables_query()
     {
       $this->db->select($this->select);

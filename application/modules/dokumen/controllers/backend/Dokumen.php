@@ -122,6 +122,7 @@ function add_action()
 
     if ($this->form_validation->run()) {
       $save_data['nama_dokumen'] = $this->input->post('nama_dokumen',true);
+      $save_data['hint'] = $this->input->post('nama_dokumen',true);
 
       $this->model->insert($save_data);
 

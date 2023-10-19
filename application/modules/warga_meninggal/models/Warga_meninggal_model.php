@@ -8,17 +8,17 @@
 /*| instagram :  */
 /*| youtube :  */
 /*| --------------------------------------------------------------------------*/
-/*| Generate By M-CRUD Generator 17/10/2023 15:05*/
+/*| Generate By M-CRUD Generator 18/10/2023 21:51*/
 /*| Please DO NOT modify this information*/
 
 
-class Warga_menigggal_model extends MY_Model{
+class Warga_meninggal_model extends MY_Model{
 
-  private $table        = "warga_menigggal";
+  private $table        = "warga_meninggal";
   private $primary_key  = "NIK";
-  private $column_order = array('NIK', 'tgl_meninggal', 'dokumen', 'keterangan');
-  private $order        = array('warga_menigggal.NIK'=>"DESC");
-  private $select       = "warga_menigggal.NIK,warga_menigggal.NIK,warga_menigggal.tgl_meninggal,warga_menigggal.dokumen,warga_menigggal.keterangan";
+  private $column_order = array('NIK', 'tgl_meninggal', 'no_dokumen', 'lampiran', 'keterangan');
+  private $order        = array('warga_meninggal.NIK'=>"DESC");
+  private $select       = "warga_meninggal.NIK,warga_meninggal.NIK,warga_meninggal.tgl_meninggal,warga_meninggal.no_dokumen,warga_meninggal.lampiran,warga_meninggal.keterangan";
 
 public function __construct()
 	{
@@ -41,22 +41,7 @@ public function __construct()
 
     if($this->input->post("NIK"))
         {
-          $this->db->like("warga_menigggal.NIK", $this->input->post("NIK"));
-        }
-
-    if($this->input->post("tgl_meninggal"))
-        {
-          $this->db->like("warga_menigggal.tgl_meninggal", date('Y-m-d',strtotime($this->input->post("tgl_meninggal"))));
-        }
-
-    if($this->input->post("dokumen"))
-        {
-          $this->db->like("warga_menigggal.dokumen", $this->input->post("dokumen"));
-        }
-
-    if($this->input->post("keterangan"))
-        {
-          $this->db->like("warga_menigggal.keterangan", $this->input->post("keterangan"));
+          $this->db->like("warga_meninggal.NIK", $this->input->post("NIK"));
         }
 
       if(isset($_POST['order'])) // here order processing
@@ -99,7 +84,7 @@ public function __construct()
     public function _get_join()
     {
       $this->db->select("personal.NIK");
-      $this->db->join("personal","personal.NIK = warga_menigggal.NIK","left");
+      $this->db->join("personal","personal.NIK = warga_meninggal.NIK","left");
     }
 
     public function get_detail($id)
@@ -119,5 +104,5 @@ public function __construct()
 
 }
 
-/* End of file Warga_menigggal_model.php */
-/* Location: ./application/modules/warga_menigggal/models/Warga_menigggal_model.php */
+/* End of file Warga_meninggal_model.php */
+/* Location: ./application/modules/warga_meninggal/models/Warga_meninggal_model.php */

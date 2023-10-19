@@ -18,7 +18,7 @@ class Cetak_model extends MY_Model{
   private $primary_key  = "NIK";
   private $column_order = array('NIK', 'nama_lengkap', 'tempat_lahir', 'tgl_lahir', 'jenis_kelamin', 'agama', 'pendidikan', 'pekerjaan', 'gol_darah', 'cacat', 'status_kawin', 'hub_keluarga', 'warga_negara', 'suku', 'nik_ayah', 'nik_ibu', 'status_kependudukan', 'hp', 'email', 'alamat', 'status_rumah', 'image','id_lingkungan', 'createdat', 'modified');
   private $order        = array('personal.NIK'=>"DESC");
-  private $select       = "personal.NIK as tes,personal.NIK,personal.nama_lengkap,personal.tempat_lahir,personal.tgl_lahir,personal.jenis_kelamin,personal.agama,personal.pendidikan,personal.pekerjaan,personal.gol_darah,personal.cacat,personal.status_kawin,personal.hub_keluarga,personal.warga_negara,personal.suku,personal.nik_ayah as ayah,personal.nik_ibu as ibu,personal.status_kependudukan,personal.hp,personal.email,personal.alamat,personal.status_rumah,personal.image,lingkungan.nama_lingkungan,personal.createdat,personal.modified";
+  private $select       = "personal.NIK as tes,personal.NIK,personal.nama_lengkap,personal.tempat_lahir,personal.tgl_lahir,personal.jenis_kelamin,personal.agama,personal.pendidikan,personal.pekerjaan,personal.gol_darah,personal.cacat,personal.status_kawin,personal.hub_keluarga,personal.warga_negara,personal.suku,personal.nik_ayah as ayah,p.nama_lengkap as nama_ayah,personal.nik_ibu as ibu,p2.nama_lengkap as nama_ibu,personal.status_kependudukan,personal.hp,personal.email,personal.alamat,personal.status_rumah,personal.image,lingkungan.nama_lingkungan,personal.createdat,personal.modified";
 
 public function __construct()
 	{
@@ -65,10 +65,25 @@ public function __construct()
     public function get_datatables()
     {
         $this->_get_datatables_query();
-        if($_POST['length'] != -1)
-        $this->db->limit($_POST['length'], $_POST['start']);
+        // if($_POST['length'] != -1)
+        // $this->db->limit($_POST['length'], $_POST['start']);
         $query = $this->db->get();
         return $query->result();
+    }
+    public function get_warga($id)
+    {
+        $this->_get_datatables_query();
+        // if($_POST['length'] != -1)
+        // $this->db->limit($_POST['length'], $_POST['start']);
+        $this->db->where("personal.NIK",$id);
+        $query = $this->db->get();
+        //return $query->result();
+        if($query->num_rows()>0)
+        {
+          return $query->result();
+        }else{
+          return FALSE;
+        }
     }
 
     public function count_filtered()
@@ -111,6 +126,73 @@ public function __construct()
         }
     }
 
+    public function get_desa(){
+      $query = $this->db->get('desa');
+      if($query->num_rows()>0)
+        {
+          return $query->row();
+        }else{
+          return FALSE;
+        }
+    }
+
+    public function get_dokumen($id){
+      $this->db->select('dokumen.nama_dokumen,nomor,tgl_terbit, lampiran_dokumen.nik,lampiran,ket, nama_lengkap');
+      $this->db->from("personal");
+      $this->db->join("lampiran_dokumen","personal.NIK = lampiran_dokumen.nik","left");
+      $this->db->join("dokumen","dokumen.id_dokumen = lampiran_dokumen.id_dokumen","right");
+      $this->db->where("personal.NIK",$id);
+      $this->db->or_where("personal.NIK",NULL);
+      
+      ///$this->db->where("lampiran_dokumen.nik",$id);
+      $query = $this->db->get();
+      if($query->num_rows()>0)
+        {
+          return $query->result();
+        }else{
+          return FALSE;
+        }
+    }
+
+    public function get_lingkungan(){
+      $this->db->select('kode,lingkungan.nama_lingkungan,nik_kepling,nama_lengkap,total_warga');
+      $this->db->from("lingkungan");
+      $this->db->join("personal","personal.NIK = lingkungan.nik_kepling","left");
+
+      if($this->input->post('id_lingkungan')){
+        $id = $this->input->post('id_lingkungan');
+        $this->db->where("kode",$id);
+      }
+      
+      ///$this->db->where("lampiran_dokumen.nik",$id);
+      $query = $this->db->get();
+      if($query->num_rows()>0)
+        {
+          return $query->result();
+        }else{
+          return FALSE;
+        }
+    }
+
+    public function get_wargameninggal(){
+      $this->db->select('warga_meninggal.NIK,lingkungan.nama_lingkungan,tgl_meninggal,nama_lengkap,no_dokumen');
+      $this->db->from("warga_meninggal");
+      $this->db->join("personal","personal.NIK = warga_meninggal.NIK","left");
+      $this->db->join("lingkungan","personal.id_lingkungan = lingkungan.kode","left");
+      if($this->input->post("nik_ayah") <> ''){
+        $id = $this->input->post("nik_ayah");
+        $this->db->where("personal.NIK",$id);
+      }
+      
+      ///$this->db->where("lampiran_dokumen.nik",$id);
+      $query = $this->db->get();
+      if($query->num_rows()>0)
+        {
+          return $query->result();
+        }else{
+          return FALSE;
+        }
+    }
 
 
 }

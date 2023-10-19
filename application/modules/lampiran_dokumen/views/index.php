@@ -22,15 +22,6 @@
                       <?=is_select_filter("personal","nik","NIK","NIK","NIK");?>
                                       </div>
 
-                                  <div class="form-group col-md-6">
-                                          <!--
-                          app_helper.php - methode is_select
-                          is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
-                        --->
-                      <?=is_select_filter("dokumen","id_dokumen","id_dokumen","nama_dokumen","Dokumen");?>
-                                      </div>
-
-                 
                               </div>
               <div class="pull-right">
                 <button type='button' class='btn btn-default btn-sm' id="filter-cancel"><?=cclang("cancel")?></button>
@@ -42,9 +33,12 @@
                 <thead>
                   <tr>
 							<th>NIK</th>
-							<th>Dokumen</th>
+							<th>Id dokumen</th>
+							<th>Nomor</th>
+							<th>Tanggal terbit</th>
+							<th>Masa berlaku</th>
 							<th>Lampiran</th>
-							<th>Ket</th>
+							<th>Keterangan</th>
 							<th>Createdat</th>
 							<th>Modified</th>
                     <th>#</th>
@@ -85,11 +79,6 @@
         "type": "POST",
          "data": function(data) {
                                           data.nik = $("#nik").val();
-                                                        data.id_dokumen = $("#id_dokumen").val();
-                                                        data.lampiran = $("#lampiran").val();
-                                                        data.ket = $("#ket").val();
-                                                        data.createdat = $("#createdat").val();
-                                                        data.modified = $("#modified").val();
                                     }
               },
 
@@ -126,21 +115,31 @@
             "orderable": false
           },
 
+					{
+            "targets": 6,
+            "orderable": false
+          },
+
+					{
+            "targets": 7,
+            "orderable": false
+          },
+
+					{
+            "targets": 8,
+            "orderable": false
+          },
+
         {
           "className": "text-center",
           "orderable": false,
-          "targets": 6
+          "targets": 9
         },
       ],
     });
 
     $("#reload").click(function() {
                         $("#nik").val("");
-                  $("#id_dokumen").val("");
-                  $("#lampiran").val("");
-                  $("#ket").val("");
-                  $("#createdat").val("");
-                  $("#modified").val("");
                     table.ajax.reload();
     });
 

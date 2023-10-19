@@ -485,7 +485,7 @@ class Cpdf
 
                         case 'Duplex':
                             if (!in_array($v, array('None', 'AppDefault'))) {
-                                continue;
+                                continue 2;
                             }
                             $o['info'][$k] = $v;
                             break;

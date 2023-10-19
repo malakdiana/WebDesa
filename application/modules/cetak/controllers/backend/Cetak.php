@@ -27,15 +27,66 @@ public function __construct()
 
 function index()
 {
+  $data = array('action' => url("cetak/cetak"));
   $this->is_allowed('cetak_list');
   $this->template->set_title($this->title);
-  $this->template->view("index");
+  $this->template->view("index",$data);
 }
 
 function cetak(){
-  $data['warga'] = $this->model->get_datatables();
-  $this->load->library('mypdf');
-  $this->mypdf->generate('dompdf');
+  $id = $this->input->post('nik_ayah',true);
+  $data['desa'] = $this->model->get_desa();
+  $data['warga'] = $this->model->get_warga($id);
+
+  $data['dokumen'] = $this->model->get_dokumen($id);
+  // echo var_dump( $data['dokumen'] );
+ $this->load->library('mypdf');
+ $this->mypdf->generate('cetakwarga',$data);
+}
+
+function cetak2(){
+  
+  $data['desa'] = $this->model->get_desa();
+  $data['lingkungan'] = $this->model->get_lingkungan();
+   $this->load->library('mypdf');
+   $this->mypdf->generate('cetaklingkungan',$data);
+}
+
+function cetak3(){
+  
+  $data['desa'] = $this->model->get_desa();
+  $data['lingkungan'] = $this->model->get_lingkungan();
+   $this->load->library('mypdf');
+   $this->mypdf->generate('cetakKepLing',$data);
+}
+
+function cetak4(){
+  $id = $this->input->post('nik_ayah',true);
+  $data['desa'] = $this->model->get_desa();
+  $data['warga'] = $this->model->get_wargameninggal();
+   $this->load->library('mypdf');
+   $this->mypdf->generate('cetakWargaMeninggal',$data);
+}
+
+function cetakLingkungan(){
+  $data = array('action' => url("cetak/cetak"));
+  $this->is_allowed('cetak_list');
+  $this->template->set_title($this->title);
+  $this->template->view("form_cetaklingkungan",$data);
+}
+
+function cetakKepalaLingkungan(){
+  $data = array('action' => url("cetak/cetak"));
+  $this->is_allowed('cetak_list');
+  $this->template->set_title($this->title);
+  $this->template->view("form_kepalalingkungan",$data);
+}
+
+function warga_meninggal(){
+  $data = array('action' => url("cetak/cetak"));
+  $this->is_allowed('cetak_list');
+  $this->template->set_title($this->title);
+  $this->template->view("form_wargameninggal",$data);
 }
 
 function json()

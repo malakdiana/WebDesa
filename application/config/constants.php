@@ -91,3 +91,4 @@ $login_route = "login";
 defined('DEFAULT_CONTROLLER')  OR define('DEFAULT_CONTROLLER', "$default_controller");
 defined('ADMIN_ROUTE')  OR define('ADMIN_ROUTE', "$admin_route");
 defined('LOGIN_ROUTE')  OR define('LOGIN_ROUTE', "$login_route");
+

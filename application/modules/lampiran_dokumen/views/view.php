@@ -11,15 +11,27 @@
           <td><?=$nik?></td>
         </tr>
         <tr>
-          <td>Dokumen</td>
+          <td>Id dokumen</td>
           <td><?=$id_dokumen?></td>
         </tr>
+        <tr>
+          <td>Nomor</td>
+          <td><?=$nomor?></td>
+        </tr>
+      <tr>
+        <td>Tanggal terbit</td>
+        <td><?=$tgl_terbit != "" ? date('d-m-Y',strtotime($tgl_terbit)):""?></td>
+      </tr>
+      <tr>
+        <td>Masa berlaku</td>
+        <td><?=$masa_berlaku != "" ? date('d-m-Y',strtotime($masa_berlaku)):""?></td>
+      </tr>
         <tr>
           <td>Lampiran</td>
           <td><?=is_image($lampiran)?></td>
         </tr>
         <tr>
-          <td>Ket</td>
+          <td>Keterangan</td>
           <td><?=$ket?></td>
         </tr>
         <tr>

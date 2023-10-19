@@ -6,7 +6,7 @@
         <div class="card-header">
           <h4 class="card-title"><?=ucwords($title_module)?></h4>
           <div class="pull-right">
-                          <a href="<?=url("warga_menigggal/add")?>" class="btn btn-success btn-flat"><i class="fa fa-file btn-icon-prepend"></i> Add</a>
+                          <a href="<?=url("warga_meninggal/add")?>" class="btn btn-success btn-flat"><i class="fa fa-file btn-icon-prepend"></i> Add</a>
                                       <button type="button" id="filter-show" class="btn btn-primary btn-flat"><i class="mdi mdi-backup-restore btn-icon-prepend"></i> Filter</button>
                       </div>
         </div>
@@ -22,8 +22,6 @@
                       <?=is_select_filter("personal","NIK","NIK","NIK","NIK");?>
                                       </div>
 
-                                  
-
                               </div>
               <div class="pull-right">
                 <button type='button' class='btn btn-default btn-sm' id="filter-cancel"><?=cclang("cancel")?></button>
@@ -36,7 +34,8 @@
                   <tr>
 							<th>NIK</th>
 							<th>Tgl meninggal</th>
-							<th>Dokumen</th>
+							<th>No dokumen</th>
+							<th>Lampiran</th>
 							<th>Keterangan</th>
                     <th>#</th>
                   </tr>
@@ -72,13 +71,10 @@
 
       // Load data for the table's content from an Ajax source
       "ajax": {
-        "url": "<?= url("warga_menigggal/json")?>",
+        "url": "<?= url("warga_meninggal/json")?>",
         "type": "POST",
          "data": function(data) {
                                           data.NIK = $("#NIK").val();
-                                                        data.tgl_meninggal = $("#tgl_meninggal").val();
-                                                        data.dokumen = $("#dokumen").val();
-                                                        data.keterangan = $("#keterangan").val();
                                     }
               },
 
@@ -105,19 +101,21 @@
             "orderable": false
           },
 
+					{
+            "targets": 4,
+            "orderable": false
+          },
+
         {
           "className": "text-center",
           "orderable": false,
-          "targets": 4
+          "targets": 5
         },
       ],
     });
 
     $("#reload").click(function() {
                         $("#NIK").val("");
-                  $("#tgl_meninggal").val("");
-                  $("#dokumen").val("");
-                  $("#keterangan").val("");
                     table.ajax.reload();
     });
 

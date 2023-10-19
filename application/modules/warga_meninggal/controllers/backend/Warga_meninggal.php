@@ -7,13 +7,13 @@
 /*| instagram :  */
 /*| youtube :  */
 /*| --------------------------------------------------------------------------*/
-/*| Generate By M-CRUD Generator 17/10/2023 15:05*/
+/*| Generate By M-CRUD Generator 18/10/2023 21:51*/
 /*| Please DO NOT modify this information*/
 
 
-class Warga_menigggal extends Backend{
+class Warga_meninggal extends Backend{
 
-private $title = "Warga Menigggal";
+private $title = "Warga Meninggal";
 
 
 public function __construct()
@@ -22,12 +22,12 @@ public function __construct()
     'title' => $this->title,
    );
   parent::__construct($config);
-  $this->load->model("Warga_menigggal_model","model");
+  $this->load->model("Warga_meninggal_model","model");
 }
 
 function index()
 {
-  $this->is_allowed('warga_menigggal_list');
+  $this->is_allowed('warga_meninggal_list');
   $this->template->set_title($this->title);
   $this->template->view("index");
 }
@@ -35,7 +35,7 @@ function index()
 function json()
 {
   if ($this->input->is_ajax_request()) {
-    if (!is_allowed('warga_menigggal_list')) {
+    if (!is_allowed('warga_meninggal_list')) {
       show_error("Access Permission", 403,'403::Access Not Permission');
       exit();
     }
@@ -46,18 +46,19 @@ function json()
         $rows = array();
                 $rows[] = $row->NIK;
                 $rows[] = date("d-m-Y",  strtotime($row->tgl_meninggal));
-                $rows[] = is_image($row->dokumen,'','width:auto;height:40px');
+                $rows[] = $row->no_dokumen;
+                $rows[] = is_image($row->lampiran,'','width:auto;height:40px');
                 $rows[] = $row->keterangan;
         
         $rows[] = '
                   <div class="btn-group" role="group" aria-label="Basic example">
-                      <a href="'.url("warga_menigggal/detail/".enc_url($row->NIK)).'" id="detail" class="btn btn-primary" title="'.cclang("detail").'">
+                      <a href="'.url("warga_meninggal/detail/".enc_url($row->NIK)).'" id="detail" class="btn btn-primary" title="'.cclang("detail").'">
                         <i class="mdi mdi-file"></i>
                       </a>
-                      <a href="'.url("warga_menigggal/update/".enc_url($row->NIK)).'" id="update" class="btn btn-warning" title="'.cclang("update").'">
+                      <a href="'.url("warga_meninggal/update/".enc_url($row->NIK)).'" id="update" class="btn btn-warning" title="'.cclang("update").'">
                         <i class="ti-pencil"></i>
                       </a>
-                      <a href="'.url("warga_menigggal/delete/".enc_url($row->NIK)).'" id="delete" class="btn btn-danger" title="'.cclang("delete").'">
+                      <a href="'.url("warga_meninggal/delete/".enc_url($row->NIK)).'" id="delete" class="btn btn-danger" title="'.cclang("delete").'">
                         <i class="ti-trash"></i>
                       </a>
                     </div>
@@ -79,7 +80,7 @@ function json()
 
 function filter()
 {
-  if(!is_allowed('warga_menigggal_filter'))
+  if(!is_allowed('warga_meninggal_filter'))
   {
     echo "access not permission";
   }else{
@@ -89,13 +90,14 @@ function filter()
 
 function detail($id)
 {
-  $this->is_allowed('warga_menigggal_detail');
+  $this->is_allowed('warga_meninggal_detail');
     if ($row = $this->model->get_detail(dec_url($id))) {
     $this->template->set_title("Detail ".$this->title);
     $data = array(
           "NIK" => $row->NIK,
           "tgl_meninggal" => $row->tgl_meninggal,
-          "dokumen" => $row->dokumen,
+          "no_dokumen" => $row->no_dokumen,
+          "lampiran" => $row->lampiran,
           "keterangan" => $row->keterangan,
     );
     $this->template->view("view",$data);
@@ -106,12 +108,13 @@ function detail($id)
 
 function add()
 {
-  $this->is_allowed('warga_menigggal_add');
+  $this->is_allowed('warga_meninggal_add');
   $this->template->set_title(cclang("add")." ".$this->title);
-  $data = array('action' => url("warga_menigggal/add_action"),
+  $data = array('action' => url("warga_meninggal/add_action"),
                   'NIK' => set_value("NIK"),
                   'tgl_meninggal' => set_value("tgl_meninggal"),
-                  'dokumen' => set_value("dokumen"),
+                  'no_dokumen' => set_value("no_dokumen"),
+                  'lampiran' => set_value("lampiran"),
                   'keterangan' => set_value("keterangan"),
                   );
   $this->template->view("add",$data);
@@ -120,28 +123,30 @@ function add()
 function add_action()
 {
   if($this->input->is_ajax_request()){
-    if (!is_allowed('warga_menigggal_add')) {
+    if (!is_allowed('warga_meninggal_add')) {
       show_error("Access Permission", 403,'403::Access Not Permission');
       exit();
     }
 
     $json = array('success' => false);
-    $this->form_validation->set_rules("NIK","* NIK","trim|xss_clean");
-    $this->form_validation->set_rules("tgl_meninggal","* Tgl meninggal","trim|xss_clean");
-    $this->form_validation->set_rules("dokumen","* Dokumen","trim|xss_clean");
+    $this->form_validation->set_rules("NIK","* NIK","trim|xss_clean|required");
+    $this->form_validation->set_rules("tgl_meninggal","* Tgl meninggal","trim|xss_clean|required");
+    $this->form_validation->set_rules("no_dokumen","* No dokumen","trim|xss_clean");
+    $this->form_validation->set_rules("lampiran","* Lampiran","trim|xss_clean");
     $this->form_validation->set_rules("keterangan","* Keterangan","trim|xss_clean");
     $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
 
     if ($this->form_validation->run()) {
       $save_data['NIK'] = $this->input->post('NIK',true);
       $save_data['tgl_meninggal'] = date("Y-m-d",  strtotime($this->input->post('tgl_meninggal', true)));
-      $save_data['dokumen'] = $this->imageCopy($this->input->post('dokumen',true),$_POST['file-dir-dokumen']);
+      $save_data['no_dokumen'] = $this->input->post('no_dokumen',true);
+      $save_data['lampiran'] = $this->imageCopy($this->input->post('lampiran',true),$_POST['file-dir-lampiran']);
       $save_data['keterangan'] = $this->input->post('keterangan',true);
 
       $this->model->insert($save_data);
 
       set_message("success",cclang("notif_save"));
-      $json['redirect'] = url("warga_menigggal");
+      $json['redirect'] = url("warga_meninggal");
       $json['success'] = true;
     }else {
       foreach ($_POST as $key => $value) {
@@ -155,13 +160,14 @@ function add_action()
 
 function update($id)
 {
-  $this->is_allowed('warga_menigggal_update');
+  $this->is_allowed('warga_meninggal_update');
   if ($row = $this->model->find(dec_url($id))) {
     $this->template->set_title(cclang("update")." ".$this->title);
-    $data = array('action' => url("warga_menigggal/update_action/$id"),
+    $data = array('action' => url("warga_meninggal/update_action/$id"),
                   'NIK' => set_value("NIK", $row->NIK),
                   'tgl_meninggal' => $row->tgl_meninggal == "" ? "":date("Y-m-d",  strtotime($row->tgl_meninggal)),
-                  'dokumen' => set_value("dokumen", $row->dokumen),
+                  'no_dokumen' => set_value("no_dokumen", $row->no_dokumen),
+                  'lampiran' => set_value("lampiran", $row->lampiran),
                   'keterangan' => set_value("keterangan", $row->keterangan),
                   );
     $this->template->view("update",$data);
@@ -173,29 +179,31 @@ function update($id)
 function update_action($id)
 {
   if($this->input->is_ajax_request()){
-    if (!is_allowed('warga_menigggal_update')) {
+    if (!is_allowed('warga_meninggal_update')) {
       show_error("Access Permission", 403,'403::Access Not Permission');
       exit();
     }
 
     $json = array('success' => false);
-    $this->form_validation->set_rules("NIK","* NIK","trim|xss_clean");
-    $this->form_validation->set_rules("tgl_meninggal","* Tgl meninggal","trim|xss_clean");
-    $this->form_validation->set_rules("dokumen","* Dokumen","trim|xss_clean");
+    $this->form_validation->set_rules("NIK","* NIK","trim|xss_clean|required");
+    $this->form_validation->set_rules("tgl_meninggal","* Tgl meninggal","trim|xss_clean|required");
+    $this->form_validation->set_rules("no_dokumen","* No dokumen","trim|xss_clean");
+    $this->form_validation->set_rules("lampiran","* Lampiran","trim|xss_clean");
     $this->form_validation->set_rules("keterangan","* Keterangan","trim|xss_clean");
     $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
 
     if ($this->form_validation->run()) {
       $save_data['NIK'] = $this->input->post('NIK',true);
       $save_data['tgl_meninggal'] = date("Y-m-d",  strtotime($this->input->post('tgl_meninggal', true)));
-      $save_data['dokumen'] = $this->imageCopy($this->input->post('dokumen',true),$_POST['file-dir-dokumen']);
+      $save_data['no_dokumen'] = $this->input->post('no_dokumen',true);
+      $save_data['lampiran'] = $this->imageCopy($this->input->post('lampiran',true),$_POST['file-dir-lampiran']);
       $save_data['keterangan'] = $this->input->post('keterangan',true);
 
       $save = $this->model->change(dec_url($id), $save_data);
 
       set_message("success",cclang("notif_update"));
 
-      $json['redirect'] = url("warga_menigggal");
+      $json['redirect'] = url("warga_meninggal");
       $json['success'] = true;
     }else {
       foreach ($_POST as $key => $value) {
@@ -210,7 +218,7 @@ function update_action($id)
 function delete($id)
 {
   if ($this->input->is_ajax_request()) {
-    if (!is_allowed('warga_menigggal_delete')) {
+    if (!is_allowed('warga_meninggal_delete')) {
       return $this->response([
         'type_msg' => "error",
         'msg' => "do not have permission to access"
@@ -229,5 +237,5 @@ function delete($id)
 
 }
 
-/* End of file Warga_menigggal.php */
-/* Location: ./application/modules/warga_menigggal/controllers/backend/Warga_menigggal.php */
+/* End of file Warga_meninggal.php */
+/* Location: ./application/modules/warga_meninggal/controllers/backend/Warga_meninggal.php */

@@ -15,8 +15,12 @@
         <td><?=$tgl_meninggal != "" ? date('d-m-Y',strtotime($tgl_meninggal)):""?></td>
       </tr>
         <tr>
-          <td>Dokumen</td>
-          <td><?=is_image($dokumen)?></td>
+          <td>No dokumen</td>
+          <td><?=$no_dokumen?></td>
+        </tr>
+        <tr>
+          <td>Lampiran</td>
+          <td><?=is_image($lampiran)?></td>
         </tr>
         <tr>
           <td>Keterangan</td>

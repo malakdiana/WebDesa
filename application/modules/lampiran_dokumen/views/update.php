@@ -17,12 +17,27 @@
           </div>
         
           <div class="form-group">
-            <label>Dokumen</label>
+            <label>Id dokumen</label>
             <!--
               app_helper.php - methode is_select
               is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
             --->
             <?=is_select("dokumen","id_dokumen","id_dokumen","nama_dokumen","$id_dokumen");?>
+          </div>
+        
+          <div class="form-group">
+            <label>Nomor</label>
+            <input type="text" class="form-control form-control-sm" placeholder="Nomor" name="nomor" id="nomor" value="<?=$nomor?>">
+          </div>
+        
+          <div class="form-group">
+            <label>Tanggal terbit</label>
+            <input type="date" class="form-control form-control-sm" placeholder="Tanggal terbit" name="tgl_terbit" id="tgl_terbit" value="<?=$tgl_terbit?>">
+          </div>
+        
+          <div class="form-group">
+            <label>Masa berlaku</label>
+            <input type="date" class="form-control form-control-sm" placeholder="Masa berlaku" name="masa_berlaku" id="masa_berlaku" value="<?=$masa_berlaku?>">
           </div>
         
           <div class="form-group">
@@ -40,8 +55,8 @@
           </div>
         
           <div class="form-group">
-            <label>Ket</label>
-            <textarea class="form-control form-control-sm" placeholder="Ket" name="ket" id="ket" rows="3" cols="80"><?=$ket?></textarea>
+            <label>Keterangan</label>
+            <textarea class="form-control form-control-sm" placeholder="Keterangan" name="ket" id="ket" rows="3" cols="80"><?=$ket?></textarea>
           </div>
         
           <input type="hidden" name="submit" value="update">

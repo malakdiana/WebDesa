@@ -8,7 +8,7 @@
 /*| instagram :  */
 /*| youtube :  */
 /*| --------------------------------------------------------------------------*/
-/*| Generate By M-CRUD Generator 15/10/2023 22:39*/
+/*| Generate By M-CRUD Generator 17/10/2023 22:44*/
 /*| Please DO NOT modify this information*/
 
 
@@ -16,9 +16,9 @@ class Lampiran_dokumen_model extends MY_Model{
 
   private $table        = "lampiran_dokumen";
   private $primary_key  = "id";
-  private $column_order = array('nik', 'id_dokumen', 'lampiran', 'ket', 'createdat', 'modified');
+  private $column_order = array('nik', 'id_dokumen', 'nomor', 'tgl_terbit', 'masa_berlaku', 'lampiran', 'ket', 'createdat', 'modified');
   private $order        = array('lampiran_dokumen.id'=>"DESC");
-  private $select       = "lampiran_dokumen.id,lampiran_dokumen.nik,lampiran_dokumen.id_dokumen,lampiran_dokumen.lampiran,lampiran_dokumen.ket,lampiran_dokumen.createdat,lampiran_dokumen.modified";
+  private $select       = "lampiran_dokumen.id,lampiran_dokumen.nik,lampiran_dokumen.id_dokumen,lampiran_dokumen.nomor,lampiran_dokumen.tgl_terbit,lampiran_dokumen.masa_berlaku,lampiran_dokumen.lampiran,lampiran_dokumen.ket,lampiran_dokumen.createdat,lampiran_dokumen.modified";
 
 public function __construct()
 	{
@@ -42,31 +42,6 @@ public function __construct()
     if($this->input->post("nik"))
         {
           $this->db->like("lampiran_dokumen.nik", $this->input->post("nik"));
-        }
-
-    if($this->input->post("id_dokumen"))
-        {
-          $this->db->like("lampiran_dokumen.id_dokumen", $this->input->post("id_dokumen"));
-        }
-
-    if($this->input->post("lampiran"))
-        {
-          $this->db->like("lampiran_dokumen.lampiran", $this->input->post("lampiran"));
-        }
-
-    if($this->input->post("ket"))
-        {
-          $this->db->like("lampiran_dokumen.ket", $this->input->post("ket"));
-        }
-
-    if($this->input->post("createdat"))
-        {
-          $this->db->like("lampiran_dokumen.createdat", date('Y-m-d H:i',strtotime($this->input->post("createdat"))));
-        }
-
-    if($this->input->post("modified"))
-        {
-          $this->db->like("lampiran_dokumen.modified", date('Y-m-d H:i',strtotime($this->input->post("modified"))));
         }
 
       if(isset($_POST['order'])) // here order processing

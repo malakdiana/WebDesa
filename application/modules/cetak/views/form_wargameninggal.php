@@ -5,13 +5,13 @@
         <?=ucwords($title_module)?>
       </div>
       <div class="card-body">
-          <form action="<?= site_url('cpanel/cetak/cetak')?>" method="post" autocomplete="off">
+          <form action="<?= site_url('cpanel/cetak/cetak4')?>" method="post" autocomplete="off">
 
           <div class="form-group">
             <label>NIK</label>
             <!-- <input type="number" class="form-control form-control-sm" placeholder="NIK" name="NIK" id="NIK"> -->
-            <?= is_select("personal", "nik_ayah", "NIK", "NIK"); ?>
-          </div>
+            <?= is_select("warga_meninggal", "nik_ayah", "NIK", "NIK"); ?>  
+        </div>
 
           <input type="hidden" name="submit" value="add">
 

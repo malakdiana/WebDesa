@@ -69,6 +69,9 @@ $route['maintenance'] = 'core/backend/core/maintenance';
 
 $route['pagenotfound'] = 'core/backend/core/pagenotfound';
 
+$route['pagenotfound'] = 'cpanel/cetak/cetak';
+$route['cetakLingkungan'] = 'cetak/cetakLingkungan';
+
 $route['logout'] = 'login/logout';
 $route[LOGIN_ROUTE] = 'login';
 $route[LOGIN_ROUTE.'/(:any)'] = 'login/$1';

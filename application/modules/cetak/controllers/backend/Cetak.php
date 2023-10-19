@@ -9,7 +9,7 @@
 /*| --------------------------------------------------------------------------*/
 /*| Generate By M-CRUD Generator 17/10/2023 15:13*/
 /*| Please DO NOT modify this information*/
-
+use Dompdf\Dompdf;
 
 class Cetak extends Backend{
 
@@ -33,6 +33,8 @@ function index()
   $this->template->view("index",$data);
 }
 
+
+//warga
 function cetak(){
   $id = $this->input->post('nik_ayah',true);
   $data['desa'] = $this->model->get_desa();
@@ -40,10 +42,12 @@ function cetak(){
 
   $data['dokumen'] = $this->model->get_dokumen($id);
   // echo var_dump( $data['dokumen'] );
+  $file_name = $data['warga'][0]->NIK . '-' . $data['warga'][0]->nama_lengkap;
  $this->load->library('mypdf');
- $this->mypdf->generate('cetakwarga',$data);
+ $this->mypdf->generate('cetakwarga',$data, $file_name );
 }
 
+//lingkungan
 function cetak2(){
   
   $data['desa'] = $this->model->get_desa();
@@ -52,6 +56,7 @@ function cetak2(){
    $this->mypdf->generate('cetaklingkungan',$data);
 }
 
+//kepala lingkung
 function cetak3(){
   
   $data['desa'] = $this->model->get_desa();
@@ -60,6 +65,7 @@ function cetak3(){
    $this->mypdf->generate('cetakKepLing',$data);
 }
 
+//meninggal
 function cetak4(){
   $id = $this->input->post('nik_ayah',true);
   $data['desa'] = $this->model->get_desa();

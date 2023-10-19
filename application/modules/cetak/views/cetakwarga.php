@@ -69,6 +69,11 @@
             margin-top: 100px;
             text-align: center;
         }
+
+        table td,
+        table td * {
+            vertical-align: top;
+        }
     </style>
 </head>
 
@@ -244,7 +249,7 @@
                                 <td><?= $dokumen[0]->nik ?></td>
                             </tr>
                             <?php foreach ($dokumen as $row) { ?>
-                      
+
                                 <tr>
                                     <td>Nomor <?= $row->nama_dokumen ?></td>
                                     <td>:</td>

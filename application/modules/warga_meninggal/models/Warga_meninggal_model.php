@@ -18,7 +18,7 @@ class Warga_meninggal_model extends MY_Model{
   private $primary_key  = "NIK";
   private $column_order = array('NIK', 'tgl_meninggal', 'no_dokumen', 'lampiran', 'keterangan');
   private $order        = array('warga_meninggal.NIK'=>"DESC");
-  private $select       = "warga_meninggal.NIK,warga_meninggal.NIK,warga_meninggal.tgl_meninggal,warga_meninggal.no_dokumen,warga_meninggal.lampiran,warga_meninggal.keterangan";
+  private $select       = "warga_meninggal.NIK,personal.nama_lengkap,warga_meninggal.NIK,warga_meninggal.tgl_meninggal,warga_meninggal.no_dokumen,warga_meninggal.lampiran,warga_meninggal.keterangan";
 
 public function __construct()
 	{
@@ -56,6 +56,10 @@ public function __construct()
 
     }
 
+    public function get_nik(){
+      $query = $this->db->get('personal');
+      return $query->result();
+    }
 
     public function get_datatables()
     {

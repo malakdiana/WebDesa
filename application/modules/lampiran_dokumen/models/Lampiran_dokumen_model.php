@@ -66,6 +66,11 @@ public function __construct()
         return $query->result();
     }
 
+    public function get_nik(){
+      $query = $this->db->get('personal');
+      return $query->result();
+    }
+
     public function count_filtered()
     {
         $this->_get_datatables_query();

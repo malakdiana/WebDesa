@@ -15,8 +15,24 @@
           <td><?=$kecamatan?></td>
         </tr>
         <tr>
-          <td>Kota</td>
+          <td>Jenis daerah</td>
+          <td><?=$jenis_daerah?></td>
+        </tr>
+        <tr>
+          <td>Kota / Kabupaten</td>
           <td><?=$kota?></td>
+        </tr>
+        <tr>
+          <td>Alamat</td>
+          <td><?=$alamat?></td>
+        </tr>
+        <tr>
+          <td>Telepon</td>
+          <td><?=$telepon?></td>
+        </tr>
+        <tr>
+          <td>Kodepos</td>
+          <td><?=$kodepos?></td>
         </tr>
         <tr>
           <td>Logo</td>

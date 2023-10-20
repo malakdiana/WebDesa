@@ -129,7 +129,15 @@
               app_helper.php - methode is_select
               is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
             --->
-            <?= is_select("personal", "nik_ayah", "NIK", "NIK"); ?>
+            <!-- <?= is_select("personal", "nik_ayah", "NIK", "NIK"); ?> -->
+            <select name="nik_ayah" id="nik_ayah" class="form-control form-control-sm select2 select2-hidden-accessible">
+          
+            <?php foreach($list_nik_ayah as $row){?>
+                <option value="<?=$row->NIK?>"><?=$row->NIK?> - <?=$row->nama_lengkap?></option>
+                <?php } ?>
+              
+
+            </select>
           </div>
 
           <div class="form-group">
@@ -138,7 +146,13 @@
               app_helper.php - methode is_select
               is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
             --->
-            <?= is_select("personal", "nik_ibu", "NIK", "NIK"); ?>
+            <!-- <?= is_select("personal", "nik_ibu", "NIK", "NIK"); ?>  -->
+            <select name="nik_ibu" id="nik_ibu" placeholder="Select" class="form-control form-control-sm select2 select2-hidden-accessible">
+            
+            <?php foreach($list_nik_ibu as $row){?>
+                <option value="<?=$row->NIK?>"><?=$row->NIK?> - <?=$row->nama_lengkap?></option>
+                <?php } ?>
+            </select>
           </div>
 
           <div class="form-group">

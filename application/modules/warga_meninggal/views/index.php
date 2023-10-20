@@ -33,6 +33,7 @@
                 <thead>
                   <tr>
 							<th>NIK</th>
+              <th>Nama</th>
 							<th>Tgl meninggal</th>
 							<th>No dokumen</th>
 							<th>Lampiran</th>
@@ -105,11 +106,15 @@
             "targets": 4,
             "orderable": false
           },
+          {
+            "targets": 5,
+            "orderable": false
+          },
 
         {
           "className": "text-center",
           "orderable": false,
-          "targets": 5
+          "targets": 6
         },
       ],
     });

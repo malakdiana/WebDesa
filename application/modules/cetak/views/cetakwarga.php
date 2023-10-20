@@ -2,12 +2,21 @@
 <html lang="en">
 
 <head>
+    <script>
+       window.onload = function() { window.print(); }
+    </script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?= ucwords($title_module) ?></title>
     <link rel="shortcut icon" href="<?= base_url() ?>_temp/uploads/img/<?= setting("favicon") ?>" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <style>
+    
         h1,
         h3,
         h5,
@@ -51,11 +60,11 @@
             border-bottom: 1px solid black;
         }
 
-        #logo {
+        /* #logo {
             margin: auto;
             margin-left: 50%;
             margin-right: auto;
-        }
+        } */
 
         #tempat-tgl {
             margin-left: 120px;
@@ -77,19 +86,20 @@
     </style>
 </head>
 
-<body>
+<body onload="window.print()" class="right_content">
+<button onclick="myPrintFunction()" id="print">print</button>
     <div>
-        <header>
+    <header>
             <div class="row">
                 <div id="img" class="col-md-3">
                     <img id="logo" src="<?= base_url() ?>_temp/uploads/img/<?= $desa->logo ?>" width="140" height="160" />
                 </div>
                 <div id="text-header" class="col-md-9">
-                    <h3 class="kablogo">PEMERINTAH KABUPATEN <?= strtoupper($desa->kota) ?></h3>
-                    <h1 class="keclogo"><strong>KECAMATAN <?= strtoupper($desa->kecamatan) ?></strong></h1>
+                    <h3 class="kablogo">PEMERINTAH <?php echo strtoupper($desa->jenis_daerah); echo strtoupper($desa->kota) ?></h3>
+                    <h1 class="kablogo"><strong>KECAMATAN <?= strtoupper($desa->kecamatan) ?></strong></h1>
                     <h1 class="keclogo"><strong>KELURAHAN <?= strtoupper($desa->nama_desa) ?></strong></h1>
-                    <h6 class="alamatlogo">Jl. Soekarno-Hatta, No. 68, Telepon/Faximile (0298) 523024</h6>
-                    <h5 class="kodeposlogo"><strong>BERGAS 50552</strong></h5>
+                    <h6 class="alamatlogo"><?=$desa->alamat?>, Telepon <?=$desa->telepon?></h6>
+                    <h5 class="kodeposlogo"><strong><?=$desa->kecamatan?> <?=$desa->kodepos?></strong></h5>
                 </div>
             </div>
         </header>
@@ -276,3 +286,12 @@
 </body>
 
 </html>
+<script type="text/javascript">
+   function myPrintFunction() {
+        // do something maybe
+        alert("ok");
+        window.print();
+    }
+
+
+</script>

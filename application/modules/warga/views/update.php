@@ -117,7 +117,15 @@
               app_helper.php - methode is_select
               is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
             --->
-            <?=is_select("personal","nik_ayah","NIK","NIK","$nik_ayah");?>
+            <!-- <?=is_select("personal","nik_ayah","NIK","NIK","$nik_ayah");?> -->
+            <select name="nik_ayah" id="nik_ayah" class="form-control form-control-sm select2 select2-hidden-accessible">
+          
+          <?php foreach($list_nik_ayah as $row){?>
+              <option value="<?=$row->NIK?>" <?php if ($nik_ayah == $row->NIK){echo "selected"; } ?>><?=$row->NIK?> - <?=$row->nama_lengkap?></option>
+              <?php } ?>
+            
+
+          </select>
           </div>
         
           <div class="form-group">
@@ -126,7 +134,14 @@
               app_helper.php - methode is_select
               is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
             --->
-            <?=is_select("personal","nik_ibu","NIK","NIK","$nik_ibu");?>
+            <!-- <?=is_select("personal","nik_ibu","NIK","NIK","$nik_ibu");?> -->
+            <select name="nik_ibu" id="nik_ibu" class="form-control form-control-sm select2 select2-hidden-accessible">
+          
+          <?php foreach($list_nik_ibu as $row){?>
+              <option value="<?=$row->NIK?>" <?php if ($nik_ibu == $row->NIK){echo "selected"; } ?>><?=$row->NIK?> - <?=$row->nama_lengkap?></option>
+              <?php } ?>
+            </select>
+            
           </div>
         
           <div class="form-group">

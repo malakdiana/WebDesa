@@ -18,8 +18,42 @@
           </div>
         
           <div class="form-group">
-            <label>Kota</label>
-            <input type="text" class="form-control form-control-sm" placeholder="Kota" name="kota" id="kota" value="<?=$kota?>">
+            <label>Jenis daerah</label>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" <?=($jenis_daerah == "Kota" ? "checked":"")?> class="form-check-input" name="jenis_daerah" value="Kota">
+                Kota
+                <i class="input-helper"></i>
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" <?=($jenis_daerah == "Kabupaten" ? "checked":"")?> class="form-check-input" name="jenis_daerah" value="Kabupaten">
+                Kabupaten
+                <i class="input-helper"></i>
+              </label>
+            </div>
+            <div id="jenis_daerah"></div>
+          </div>
+        
+          <div class="form-group">
+            <label>Kota / Kabupaten</label>
+            <input type="text" class="form-control form-control-sm" placeholder="Kota / Kabupaten" name="kota" id="kota" value="<?=$kota?>">
+          </div>
+        
+          <div class="form-group">
+            <label>Alamat</label>
+            <textarea class="form-control form-control-sm" placeholder="Alamat" name="alamat" id="alamat" rows="3" cols="80"><?=$alamat?></textarea>
+          </div>
+        
+          <div class="form-group">
+            <label>Telepon</label>
+            <input type="text" class="form-control form-control-sm" placeholder="Telepon" name="telepon" id="telepon" value="<?=$telepon?>">
+          </div>
+        
+          <div class="form-group">
+            <label>Kodepos</label>
+            <input type="number" class="form-control form-control-sm" placeholder="Kodepos" name="kodepos" id="kodepos" value="<?=$kodepos?>">
           </div>
         
           <div class="form-group">

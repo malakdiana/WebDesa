@@ -110,6 +110,7 @@ function detail($id)
           "ket" => $row->ket,
           "createdat" => $row->createdat,
           "modified" => $row->modified,
+          'list_nik' => $this->model->get_nik(),
     );
     $this->template->view("view",$data);
   }else{
@@ -129,6 +130,7 @@ function add()
                   'masa_berlaku' => set_value("masa_berlaku"),
                   'lampiran' => set_value("lampiran"),
                   'ket' => set_value("ket"),
+                  'list_nik' => $this->model->get_nik(),
                   );
   $this->template->view("add",$data);
 }

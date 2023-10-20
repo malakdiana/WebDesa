@@ -61,6 +61,16 @@ public function __construct()
 
     }
 
+    public function get_nik_ayah(){
+      $query = $this->db->where("jenis_kelamin","Laki-laki")->get('personal');
+      return $query->result();
+    }
+    
+    public function get_nik_ibu(){
+      $query = $this->db->where("jenis_kelamin","Perempuan")->get('personal');
+      return $query->result();
+    }
+
 
     public function get_datatables()
     {

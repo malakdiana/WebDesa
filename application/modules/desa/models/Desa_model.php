@@ -8,7 +8,7 @@
 /*| instagram :  */
 /*| youtube :  */
 /*| --------------------------------------------------------------------------*/
-/*| Generate By M-CRUD Generator 17/10/2023 15:31*/
+/*| Generate By M-CRUD Generator 19/10/2023 23:19*/
 /*| Please DO NOT modify this information*/
 
 
@@ -16,9 +16,9 @@ class Desa_model extends MY_Model{
 
   private $table        = "desa";
   private $primary_key  = "id";
-  private $column_order = array('nama_desa', 'kecamatan', 'kota', 'logo');
+  private $column_order = array('nama_desa', 'kecamatan', 'jenis_daerah', 'kota', 'alamat', 'telepon', 'kodepos', 'logo');
   private $order        = array('desa.id'=>"DESC");
-  private $select       = "desa.id,desa.nama_desa,desa.kecamatan,desa.kota,desa.logo";
+  private $select       = "desa.id,desa.nama_desa,desa.kecamatan,desa.jenis_daerah,desa.kota,desa.alamat,desa.telepon,desa.kodepos,desa.logo";
 
 public function __construct()
 	{
@@ -41,21 +41,6 @@ public function __construct()
     if($this->input->post("nama_desa"))
         {
           $this->db->like("desa.nama_desa", $this->input->post("nama_desa"));
-        }
-
-    if($this->input->post("kecamatan"))
-        {
-          $this->db->like("desa.kecamatan", $this->input->post("kecamatan"));
-        }
-
-    if($this->input->post("kota"))
-        {
-          $this->db->like("desa.kota", $this->input->post("kota"));
-        }
-
-    if($this->input->post("logo"))
-        {
-          $this->db->like("desa.logo", $this->input->post("logo"));
         }
 
       if(isset($_POST['order'])) // here order processing

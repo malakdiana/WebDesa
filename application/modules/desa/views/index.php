@@ -30,7 +30,11 @@
                   <tr>
 							<th>Nama desa</th>
 							<th>Kecamatan</th>
-							<th>Kota</th>
+							<th>Jenis daerah</th>
+							<th>Kota / Kabupaten</th>
+							<th>Alamat</th>
+							<th>Telepon</th>
+							<th>Kodepos</th>
 							<th>Logo</th>
                     <th>#</th>
                   </tr>
@@ -70,9 +74,6 @@
         "type": "POST",
          "data": function(data) {
                                           data.nama_desa = $("#nama_desa").val();
-                                                        data.kecamatan = $("#kecamatan").val();
-                                                        data.kota = $("#kota").val();
-                                                        data.logo = $("#logo").val();
                                     }
               },
 
@@ -99,19 +100,36 @@
             "orderable": false
           },
 
+					{
+            "targets": 4,
+            "orderable": false
+          },
+
+					{
+            "targets": 5,
+            "orderable": false
+          },
+
+					{
+            "targets": 6,
+            "orderable": false
+          },
+
+					{
+            "targets": 7,
+            "orderable": false
+          },
+
         {
           "className": "text-center",
           "orderable": false,
-          "targets": 4
+          "targets": 8
         },
       ],
     });
 
     $("#reload").click(function() {
                         $("#nama_desa").val("");
-                  $("#kecamatan").val("");
-                  $("#kota").val("");
-                  $("#logo").val("");
                     table.ajax.reload();
     });
 

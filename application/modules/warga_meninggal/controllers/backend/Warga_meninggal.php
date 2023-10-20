@@ -45,6 +45,7 @@ function json()
     foreach ($list as $row) {
         $rows = array();
                 $rows[] = $row->NIK;
+                $rows[] = $row->nama_lengkap;
                 $rows[] = date("d-m-Y",  strtotime($row->tgl_meninggal));
                 $rows[] = $row->no_dokumen;
                 $rows[] = is_image($row->lampiran,'','width:auto;height:40px');
@@ -116,6 +117,7 @@ function add()
                   'no_dokumen' => set_value("no_dokumen"),
                   'lampiran' => set_value("lampiran"),
                   'keterangan' => set_value("keterangan"),
+                  'list_nik' => $this->model->get_nik(),
                   );
   $this->template->view("add",$data);
 }
@@ -169,6 +171,7 @@ function update($id)
                   'no_dokumen' => set_value("no_dokumen", $row->no_dokumen),
                   'lampiran' => set_value("lampiran", $row->lampiran),
                   'keterangan' => set_value("keterangan", $row->keterangan),
+                  'list_nik' => $this->model->get_nik(),
                   );
     $this->template->view("update",$data);
   }else {

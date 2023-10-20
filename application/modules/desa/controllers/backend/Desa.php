@@ -7,7 +7,7 @@
 /*| instagram :  */
 /*| youtube :  */
 /*| --------------------------------------------------------------------------*/
-/*| Generate By M-CRUD Generator 17/10/2023 15:31*/
+/*| Generate By M-CRUD Generator 19/10/2023 23:19*/
 /*| Please DO NOT modify this information*/
 
 
@@ -46,7 +46,11 @@ function json()
         $rows = array();
                 $rows[] = $row->nama_desa;
                 $rows[] = $row->kecamatan;
+                $rows[] = $row->jenis_daerah;
                 $rows[] = $row->kota;
+                $rows[] = $row->alamat;
+                $rows[] = $row->telepon;
+                $rows[] = $row->kodepos;
                 $rows[] = is_image($row->logo,'','width:auto;height:40px');
         
         $rows[] = '
@@ -95,7 +99,11 @@ function detail($id)
     $data = array(
           "nama_desa" => $row->nama_desa,
           "kecamatan" => $row->kecamatan,
+          "jenis_daerah" => $row->jenis_daerah,
           "kota" => $row->kota,
+          "alamat" => $row->alamat,
+          "telepon" => $row->telepon,
+          "kodepos" => $row->kodepos,
           "logo" => $row->logo,
     );
     $this->template->view("view",$data);
@@ -111,7 +119,11 @@ function add()
   $data = array('action' => url("desa/add_action"),
                   'nama_desa' => set_value("nama_desa"),
                   'kecamatan' => set_value("kecamatan"),
+                  'jenis_daerah' => set_value("jenis_daerah"),
                   'kota' => set_value("kota"),
+                  'alamat' => set_value("alamat"),
+                  'telepon' => set_value("telepon"),
+                  'kodepos' => set_value("kodepos"),
                   'logo' => set_value("logo"),
                   );
   $this->template->view("add",$data);
@@ -128,14 +140,22 @@ function add_action()
     $json = array('success' => false);
     $this->form_validation->set_rules("nama_desa","* Nama desa","trim|xss_clean");
     $this->form_validation->set_rules("kecamatan","* Kecamatan","trim|xss_clean");
-    $this->form_validation->set_rules("kota","* Kota","trim|xss_clean");
+    $this->form_validation->set_rules("jenis_daerah","* Jenis daerah","trim|xss_clean");
+    $this->form_validation->set_rules("kota","* Kota / Kabupaten","trim|xss_clean");
+    $this->form_validation->set_rules("alamat","* Alamat","trim|xss_clean");
+    $this->form_validation->set_rules("telepon","* Telepon","trim|xss_clean");
+    $this->form_validation->set_rules("kodepos","* Kodepos","trim|xss_clean");
     $this->form_validation->set_rules("logo","* Logo","trim|xss_clean");
     $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
 
     if ($this->form_validation->run()) {
       $save_data['nama_desa'] = $this->input->post('nama_desa',true);
       $save_data['kecamatan'] = $this->input->post('kecamatan',true);
+      $save_data['jenis_daerah'] = $this->input->post('jenis_daerah',true);
       $save_data['kota'] = $this->input->post('kota',true);
+      $save_data['alamat'] = $this->input->post('alamat',true);
+      $save_data['telepon'] = $this->input->post('telepon',true);
+      $save_data['kodepos'] = $this->input->post('kodepos',true);
       $save_data['logo'] = $this->imageCopy($this->input->post('logo',true),$_POST['file-dir-logo']);
 
       $this->model->insert($save_data);
@@ -161,7 +181,11 @@ function update($id)
     $data = array('action' => url("desa/update_action/$id"),
                   'nama_desa' => set_value("nama_desa", $row->nama_desa),
                   'kecamatan' => set_value("kecamatan", $row->kecamatan),
+                  'jenis_daerah' => set_value("jenis_daerah", $row->jenis_daerah),
                   'kota' => set_value("kota", $row->kota),
+                  'alamat' => set_value("alamat", $row->alamat),
+                  'telepon' => set_value("telepon", $row->telepon),
+                  'kodepos' => set_value("kodepos", $row->kodepos),
                   'logo' => set_value("logo", $row->logo),
                   );
     $this->template->view("update",$data);
@@ -181,14 +205,22 @@ function update_action($id)
     $json = array('success' => false);
     $this->form_validation->set_rules("nama_desa","* Nama desa","trim|xss_clean");
     $this->form_validation->set_rules("kecamatan","* Kecamatan","trim|xss_clean");
-    $this->form_validation->set_rules("kota","* Kota","trim|xss_clean");
+    $this->form_validation->set_rules("jenis_daerah","* Jenis daerah","trim|xss_clean");
+    $this->form_validation->set_rules("kota","* Kota / Kabupaten","trim|xss_clean");
+    $this->form_validation->set_rules("alamat","* Alamat","trim|xss_clean");
+    $this->form_validation->set_rules("telepon","* Telepon","trim|xss_clean");
+    $this->form_validation->set_rules("kodepos","* Kodepos","trim|xss_clean");
     $this->form_validation->set_rules("logo","* Logo","trim|xss_clean");
     $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
 
     if ($this->form_validation->run()) {
       $save_data['nama_desa'] = $this->input->post('nama_desa',true);
       $save_data['kecamatan'] = $this->input->post('kecamatan',true);
+      $save_data['jenis_daerah'] = $this->input->post('jenis_daerah',true);
       $save_data['kota'] = $this->input->post('kota',true);
+      $save_data['alamat'] = $this->input->post('alamat',true);
+      $save_data['telepon'] = $this->input->post('telepon',true);
+      $save_data['kodepos'] = $this->input->post('kodepos',true);
       $save_data['logo'] = $this->imageCopy($this->input->post('logo',true),$_POST['file-dir-logo']);
 
       $save = $this->model->change(dec_url($id), $save_data);

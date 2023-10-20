@@ -35,16 +35,17 @@ function index()
 
 
 //warga
-function cetak(){
-  $id = $this->input->post('nik_ayah',true);
+function cetak($id){
+  $id = dec_url($id);
   $data['desa'] = $this->model->get_desa();
   $data['warga'] = $this->model->get_warga($id);
 
   $data['dokumen'] = $this->model->get_dokumen($id);
   // echo var_dump( $data['dokumen'] );
   $file_name = $data['warga'][0]->NIK . '-' . $data['warga'][0]->nama_lengkap;
- $this->load->library('mypdf');
- $this->mypdf->generate('cetakwarga',$data, $file_name );
+   $this->load->view('cetakwarga',$data);
+//  $this->load->library('mypdf');
+//  $this->mypdf->generate('cetakwarga',$data, $file_name );
 }
 
 //lingkungan

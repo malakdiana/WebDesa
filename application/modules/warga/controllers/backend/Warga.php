@@ -33,11 +33,17 @@ class Warga extends Backend
     $this->template->view("index");
   }
 
-  function cetak()
-  {
-    $data['cetak'] = 'tes';
-    $this->load->library('mypdf');
-    $this->mypdf->generate('dompdf');
+  function cetak($id){
+    $id = dec_url($id);
+    $data['desa'] = $this->model->get_desa();
+    $data['warga'] = $this->model->get_warga($id);
+    $data['title_module'] = "Data Warga";
+    $data['dokumen'] = $this->model->get_dokumen($id);
+    //echo var_dump( $data['desa'] );
+  //  $file_name = $data['warga'][0]->NIK . '-' . $data['warga'][0]->nama_lengkap;
+    $this->load->view('cetakwarga',$data);
+  //  $this->load->library('mypdf');
+  //  $this->mypdf->generate('cetakwarga',$data, $file_name );
   }
 
   function json()
@@ -80,7 +86,7 @@ class Warga extends Backend
 
         $rows[] = '
                   <div class="btn-group" role="group" aria-label="Basic example">
-                      <a href="' . url("cetak/cetak/" . enc_url($row->tes)) . '" id="cetak" class="btn btn-success" title="' . cclang("print") . '">
+                      <a href="' . url("warga/cetak/" . enc_url($row->tes)) . '" id="cetak" class="btn btn-success" title="' . cclang("print") . '">
                         <i class="mdi mdi-file"></i>
                       </a>
                       <a href="' . url("warga/detail/" . enc_url($row->tes)) . '" id="detail" class="btn btn-primary" title="' . cclang("detail") . '">

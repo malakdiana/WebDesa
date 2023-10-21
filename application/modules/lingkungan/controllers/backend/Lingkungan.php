@@ -32,6 +32,15 @@ function index()
   $this->template->view("index");
 }
 
+function cetak(){
+  
+  $data['desa'] = $this->model->get_desa();
+  $data['lingkungan'] = $this->model->get_lingkungan();
+  // $this->load->library('mypdf');
+  // $this->mypdf->generate('cetaklingkungan',$data);
+  $this->load->view('cetaklingkungan',$data);
+}
+
 function json()
 {
   if ($this->input->is_ajax_request()) {
@@ -46,7 +55,7 @@ function json()
         $rows = array();
                 $rows[] = $row->kode;
                 $rows[] = $row->nama_lingkungan;
-                $rows[] = $row->NIK;
+                $rows[] = $row->nama_lengkap;
                 $rows[] = $row->total_warga;
         
         $rows[] = '

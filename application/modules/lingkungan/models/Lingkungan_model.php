@@ -17,8 +17,8 @@ class Lingkungan_model extends MY_Model{
   private $table        = "lingkungan";
   private $primary_key  = "kode";
   private $column_order = array('kode', 'nama_lingkungan', 'nik_kepling', 'total_warga');
-  private $order        = array('lingkungan.kode'=>"DESC");
-  private $select       = "lingkungan.kode,lingkungan.kode,lingkungan.nama_lingkungan,lingkungan.nik_kepling,lingkungan.total_warga";
+  private $order        = array('lingkungan.kode'=>"ASC");
+  private $select       = "lingkungan.kode,lingkungan.kode,lingkungan.nama_lingkungan,lingkungan.nik_kepling,lingkungan.total_warga,personal.nama_lengkap";
 
 public function __construct()
 	{
@@ -32,6 +32,36 @@ public function __construct()
 
 		parent::__construct($config);
 	}
+
+  public function get_lingkungan(){
+    $this->db->select('kode,lingkungan.nama_lingkungan,nik_kepling,nama_lengkap,total_warga');
+    $this->db->from("lingkungan");
+    $this->db->join("personal","personal.NIK = lingkungan.nik_kepling","left");
+
+    if($this->input->post('id_lingkungan')){
+      $id = $this->input->post('id_lingkungan');
+      $this->db->where("kode",$id);
+    }
+    
+    ///$this->db->where("lampiran_dokumen.nik",$id);
+    $query = $this->db->get();
+    if($query->num_rows()>0)
+      {
+        return $query->result();
+      }else{
+        return FALSE;
+      }
+  }
+
+  public function get_desa(){
+    $query = $this->db->get('desa');
+    if($query->num_rows()>0)
+      {
+        return $query->row();
+      }else{
+        return FALSE;
+      }
+  }
 
   private function _get_datatables_query()
     {

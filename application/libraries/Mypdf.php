@@ -19,6 +19,7 @@ class Mypdf
         $html = $this->ci->load->view($view, $data, TRUE);
         $dompdf->loadHtml($html);
         $dompdf->set_option('isRemoteEnabled', true);
+        $dompdf->set_option('enable_css_float', true);
 
         // (Optional) Setup the paper size and orientation
         $dompdf->setPaper($paper, $orientation);

@@ -4,31 +4,27 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title"><?=ucwords($title_module)?></h4>
+          <h4 class="card-title"><?= ucwords($title_module) ?></h4>
           <div class="pull-right">
-                          <a href="<?=url("lingkungan/add")?>" class="btn btn-success btn-flat"><i class="fa fa-file btn-icon-prepend"></i> Add</a>
-                                      <button type="button" id="filter-show" class="btn btn-primary btn-flat"><i class="mdi mdi-backup-restore btn-icon-prepend"></i> Filter</button>
-                      </div>
+            <a href="<?= url("lingkungan/add") ?>" class="btn btn-success btn-flat"><i class="fa fa-file btn-icon-prepend"></i> Add</a>
+            <a href="<?= url("lingkungan/cetak") ?>" target="_blank" class="btn btn-danger btn-flat"><i class="fa fa-print btn-icon-prepend"></i> Print</a>
+            <button type="button" id="filter-show" class="btn btn-primary btn-flat"><i class="mdi mdi-backup-restore btn-icon-prepend"></i> Filter</button>
+          </div>
         </div>
         <div class="card-content">
           <div class="card-body card-dashboard">
             <form autocomplete="off" class="content-filter">
               <div class="row">
-                                  <div class="form-group col-md-6">
-                                          <input type="text" id="kode" class="form-control form-control-sm" placeholder="Kode" />
-                                      </div>
+                <div class="form-group col-md-6">
+                  <input type="text" id="kode" class="form-control form-control-sm" placeholder="Kode" />
+                </div>
 
-                                  <div class="form-group col-md-6">
-                                          <input type="text" id="nama_lingkungan" class="form-control form-control-sm" placeholder="Nama lingkungan" />
-                                      </div>
-
-                                 
-
-                              
-
-                              </div>
+                <div class="form-group col-md-6">
+                  <input type="text" id="nama_lingkungan" class="form-control form-control-sm" placeholder="Nama lingkungan" />
+                </div>
+              </div>
               <div class="pull-right">
-                <button type='button' class='btn btn-default btn-sm' id="filter-cancel"><?=cclang("cancel")?></button>
+                <button type='button' class='btn btn-default btn-sm' id="filter-cancel"><?= cclang("cancel") ?></button>
                 <button type="button" class="btn btn-primary btn-sm" id="filter">Filter</button>
               </div>
             </form>
@@ -36,10 +32,10 @@
               <table class="table display" name="table" id="table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                   <tr>
-							<th>Kode</th>
-							<th>Nama lingkungan</th>
-							<th>NIK Kepala Lingkungan</th>
-							<th>Total warga</th>
+                    <th>Kode</th>
+                    <th>Nama lingkungan</th>
+                    <th>NIK Kepala Lingkungan</th>
+                    <th>Total warga</th>
                     <th>#</th>
                   </tr>
                 </thead>
@@ -74,38 +70,38 @@
 
       // Load data for the table's content from an Ajax source
       "ajax": {
-        "url": "<?= url("lingkungan/json")?>",
+        "url": "<?= url("lingkungan/json") ?>",
         "type": "POST",
-         "data": function(data) {
-                                          data.kode = $("#kode").val();
-                                                        data.nama_lingkungan = $("#nama_lingkungan").val();
-                                                        data.nik_kepling = $("#nik_kepling:checked").val();
-                                                        data.total_warga = $("#total_warga").val();
-                                    }
-              },
+        "data": function(data) {
+          data.kode = $("#kode").val();
+          data.nama_lingkungan = $("#nama_lingkungan").val();
+          data.nik_kepling = $("#nik_kepling:checked").val();
+          data.total_warga = $("#total_warga").val();
+        }
+      },
 
       //Set column definition initialisation properties.
       "columnDefs": [
-        
-					{
-            "targets": 0,
-            "orderable": false
-          },
 
-					{
-            "targets": 1,
-            "orderable": false
-          },
+        {
+          "targets": 0,
+          "orderable": false
+        },
 
-					{
-            "targets": 2,
-            "orderable": false
-          },
+        {
+          "targets": 1,
+          "orderable": false
+        },
 
-					{
-            "targets": 3,
-            "orderable": false
-          },
+        {
+          "targets": 2,
+          "orderable": false
+        },
+
+        {
+          "targets": 3,
+          "orderable": false
+        },
 
         {
           "className": "text-center",
@@ -116,36 +112,36 @@
     });
 
     $("#reload").click(function() {
-                        $("#kode").val("");
-                  $("#nama_lingkungan").val("");
-                  $("#nik_kepling").val("");
-                  $("#total_warga").val("");
-                    table.ajax.reload();
+      $("#kode").val("");
+      $("#nama_lingkungan").val("");
+      $("#nik_kepling").val("");
+      $("#total_warga").val("");
+      table.ajax.reload();
     });
 
-          $(document).on("click", "#filter-show", function(e) {
-        e.preventDefault();
-        $(".content-filter").slideDown();
-      });
+    $(document).on("click", "#filter-show", function(e) {
+      e.preventDefault();
+      $(".content-filter").slideDown();
+    });
 
-      $(document).on("click", "#filter", function(e) {
-        e.preventDefault();
-        $("#table").DataTable().ajax.reload();
-      })
+    $(document).on("click", "#filter", function(e) {
+      e.preventDefault();
+      $("#table").DataTable().ajax.reload();
+    })
 
-      $(document).on("click", "#filter-cancel", function(e) {
-        e.preventDefault();
-        $(".content-filter").slideUp();
-      });
-    
+    $(document).on("click", "#filter-cancel", function(e) {
+      e.preventDefault();
+      $(".content-filter").slideUp();
+    });
+
     $(document).on("click", "#delete", function(e) {
       e.preventDefault();
       $('.modal-dialog').addClass('modal-sm');
-      $("#modalTitle").text('<?=cclang("confirm")?>');
-      $('#modalContent').html(`<p class="mb-4"><?=cclang("delete_description")?></p>
+      $("#modalTitle").text('<?= cclang("confirm") ?>');
+      $('#modalContent').html(`<p class="mb-4"><?= cclang("delete_description") ?></p>
                               <div class="pull-right">
-  														<button type='button' class='btn btn-default btn-sm' data-dismiss='modal'><?=cclang("cancel")?></button>
-  	                          <button type='button' class='btn btn-primary btn-sm' id='ya-hapus' data-id=` + $(this).attr('alt') + `  data-url=` + $(this).attr('href') + `><?=cclang("delete_action")?></button>
+  														<button type='button' class='btn btn-default btn-sm' data-dismiss='modal'><?= cclang("cancel") ?></button>
+  	                          <button type='button' class='btn btn-primary btn-sm' id='ya-hapus' data-id=` + $(this).attr('alt') + `  data-url=` + $(this).attr('href') + `><?= cclang("delete_action") ?></button>
   														</div>`);
       $("#modalGue").modal('show');
     });

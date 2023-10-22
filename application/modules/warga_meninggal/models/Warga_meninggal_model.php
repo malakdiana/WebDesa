@@ -77,6 +77,16 @@ public function __construct()
         return $query->num_rows();
     }
 
+    public function get_desa(){
+      $query = $this->db->get('desa');
+      if($query->num_rows()>0)
+        {
+          return $query->row();
+        }else{
+          return FALSE;
+        }
+    }
+
     public function count_all()
     {
       $this->db->select($this->select);
@@ -101,6 +111,25 @@ public function __construct()
         if($query->num_rows()>0)
         {
           return $query->row();
+        }else{
+          return FALSE;
+        }
+    }
+    public function get_wargameninggal(){
+      $this->db->select('warga_meninggal.NIK,lingkungan.nama_lingkungan,tgl_meninggal,nama_lengkap,no_dokumen');
+      $this->db->from("warga_meninggal");
+      $this->db->join("personal","personal.NIK = warga_meninggal.NIK","left");
+      $this->db->join("lingkungan","personal.id_lingkungan = lingkungan.kode","left");
+      if($this->input->post("nik_ayah") <> ''){
+        $id = $this->input->post("nik_ayah");
+        $this->db->where("personal.NIK",$id);
+      }
+      
+      ///$this->db->where("lampiran_dokumen.nik",$id);
+      $query = $this->db->get();
+      if($query->num_rows()>0)
+        {
+          return $query->result();
         }else{
           return FALSE;
         }

@@ -53,7 +53,10 @@ function json()
         
         $rows[] = '
                   <div class="btn-group" role="group" aria-label="Basic example">
-                      <a href="'.url("warga_meninggal/detail/".enc_url($row->NIK)).'" id="detail" class="btn btn-primary" title="'.cclang("detail").'">
+                  <a href="' . url("warga_meninggal/cetak/" . enc_url($row->NIK)) . '" id="cetak" class="btn btn-success" title="' . cclang("print") . '">
+                  <i class="mdi mdi-printer"></i>
+                </a>
+                  <a href="'.url("warga_meninggal/detail/".enc_url($row->NIK)).'" id="detail" class="btn btn-primary" title="'.cclang("detail").'">
                         <i class="mdi mdi-file"></i>
                       </a>
                       <a href="'.url("warga_meninggal/update/".enc_url($row->NIK)).'" id="update" class="btn btn-warning" title="'.cclang("update").'">
@@ -235,6 +238,13 @@ function delete($id)
 
     return $this->response($json);
   }
+}
+function cetak($id){
+  $id = dec_url($id);
+  $data['desa'] = $this->model->get_desa();
+  $data['warga'] = $this->model->get_wargameninggal($id);
+  // $this->load->library('mypdf');
+   $this->load->view('cetakWargaMeninggal',$data);
 }
 
 

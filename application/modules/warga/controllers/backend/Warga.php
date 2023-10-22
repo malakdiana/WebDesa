@@ -87,7 +87,7 @@ class Warga extends Backend
         $rows[] = '
                   <div class="btn-group" role="group" aria-label="Basic example">
                       <a href="' . url("warga/cetak/" . enc_url($row->tes)) . '" id="cetak" class="btn btn-success" title="' . cclang("print") . '">
-                        <i class="mdi mdi-file"></i>
+                        <i class="mdi mdi-printer"></i>
                       </a>
                       <a href="' . url("warga/detail/" . enc_url($row->tes)) . '" id="detail" class="btn btn-primary" title="' . cclang("detail") . '">
                         <i class="mdi mdi-file"></i>

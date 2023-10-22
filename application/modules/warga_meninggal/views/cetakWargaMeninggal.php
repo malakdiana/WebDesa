@@ -119,8 +119,6 @@
 
             <?php foreach ($warga as $data) { ?>
                 <div class="container" >
-
-
                     <table>
                         <tr>
                             <td>Tanggal Meninggal</td>

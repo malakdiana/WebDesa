@@ -37,6 +37,7 @@
 							<th>Nama lengkap</th>
 							<th>Tempat lahir</th>
 							<th>Tgl lahir</th>
+              <th>Kategori Usia</th>
 							<th>Jenis kelamin</th>
 							<th>Agama</th>
 							<th>Pendidikan</th>
@@ -276,11 +277,15 @@
           "targets": 24,
           "orderable": false
         },
+        {
+          "targets": 25,
+          "orderable": false
+        },
 
         {
           "className": "text-center",
           "orderable": false,
-          "targets": 25
+          "targets": 26
         },
       ],
     });

@@ -112,7 +112,7 @@
             </div>
         </header>
 
-        <div class="container">
+        <div class="container" style="page-break-after: always;">
             <hr class="garis1" />
             <div id="pembuka" style="border: solid 1px black;width: 150px;padding-left: 2%;padding-top: 1%;padding-bottom: 1%;"><b> Data Personal</b></div>
             <div class="row">
@@ -257,14 +257,13 @@
             </div>
         </div>
         <br>
-        <div class="container" style="break-after:page">
+        <div class="container" style="break-after:page; margin-top:10px">
+             <div class="judul" style="border: solid 1px black;width: 250px;padding-left: 2%;padding-top: 1%;padding-bottom: 1%;"><b> Data Kepemilikan Dokumen</b></div>
+             
             <div class="row">
+                 
                 <div class="col-lg-8">
-                    <div class="judul" style="border: solid 1px black;width: 250px;padding-left: 2%;padding-top: 1%;padding-bottom: 1%;"><b> Data Kepemilikan Dokumen</b></div>
-
-
-
-                    <table>
+                    <table style="padding-top: 5px;">
 
                         <tr>
                             <td>NIK</td>

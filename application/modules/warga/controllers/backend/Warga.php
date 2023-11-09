@@ -39,11 +39,7 @@ class Warga extends Backend
     $data['warga'] = $this->model->get_warga($id);
     $data['title_module'] = "Data Warga";
     $data['dokumen'] = $this->model->get_dokumen($id);
-    //echo var_dump( $data['desa'] );
-  //  $file_name = $data['warga'][0]->NIK . '-' . $data['warga'][0]->nama_lengkap;
     $this->load->view('cetakwarga',$data);
-  //  $this->load->library('mypdf');
-  //  $this->mypdf->generate('cetakwarga',$data, $file_name );
   }
 
   function json()
@@ -56,12 +52,42 @@ class Warga extends Backend
 
       $list = $this->model->get_datatables();
       $data = array();
+      
       foreach ($list as $row) {
+        $tanggal_lahir = new DateTime($row->tgl_lahir);
+        $sekarang = new DateTime("today");
+          if ($tanggal_lahir > $sekarang) { 
+              $thn = "0";
+              $bln = "0";
+              $tgl = "0";
+          }
+           $thn = $sekarang->diff($tanggal_lahir)->y;
+           $bln = $sekarang->diff($tanggal_lahir)->m;
+           $tgl = $sekarang->diff($tanggal_lahir)->d;
+        
+        if($thn <= 2){
+          $kategori = "Baduta";
+        }elseif($thn >= 3 && $thn <=5 ){
+          $kategori = "Balita";
+        }elseif($thn > 5 && $thn <=12){
+          $kategori = "Anak-anak";
+        }elseif($thn > 12 && $thn <=20){
+          $kategori = "Remaja";
+        }elseif($thn > 20 && $thn <=49){
+          $kategori = "PUS(pasangan usia subur)";
+        }elseif($thn > 49 && $thn <=59){
+          $kategori = "Dewasa";
+        }else{
+          $kategori = "Lansia";
+        }
+
+
         $rows = array();
         $rows[] = $row->tes;
         $rows[] = $row->nama_lengkap;
         $rows[] = $row->tempat_lahir;
         $rows[] = date("d-m-Y",  strtotime($row->tgl_lahir));
+        $rows[] = $kategori;
         $rows[] = $row->jenis_kelamin;
         $rows[] = $row->agama;
         $rows[] = $row->pendidikan;

@@ -2,22 +2,29 @@
   <div class="col-md-12 col-xl-10 mx-auto animated fadeIn delay-2s">
     <div class="card m-b-30">
       <div class="card-header bg-primary text-white">
-        <?=ucwords($title_module)?>
+        <?= ucwords($title_module) ?>
       </div>
       <div class="card-body">
-          <form action="<?= site_url('cpanel/cetak/cetak')?>" method="post" autocomplete="off">
+        <form action="<?= site_url('cpanel/cetak/cetak') ?>" method="post" autocomplete="off">
 
           <div class="form-group">
             <label>NIK</label>
             <!-- <input type="number" class="form-control form-control-sm" placeholder="NIK" name="NIK" id="NIK"> -->
             <?= is_select("personal", "nik_ayah", "NIK", "NIK"); ?>
+            <!-- <select name="id" placeholder="silahkan pilih" class="form-control select2">
+              <?php
+              foreach ($variable as $key => $value) { ?>
+                <option value=""></option>
+              <?php } ?>
+
+            </select> -->
           </div>
 
           <input type="hidden" name="submit" value="add">
 
           <div class="text-right">
-            <a href="<?=url($this->uri->segment(2))?>" class="btn btn-sm btn-danger"><?=cclang("cancel")?></a>
-            <button type="submit" id="submit"  class="btn btn-sm btn-primary"><?=cclang("save")?></button>
+            <a href="<?= url($this->uri->segment(2)) ?>" class="btn btn-sm btn-danger"><?= cclang("cancel") ?></a>
+            <button type="submit" id="submit" class="btn btn-sm btn-primary"><?= cclang("save") ?></button>
           </div>
         </form>
       </div>
@@ -46,7 +53,7 @@ $.ajax({
           return;
         }else {
           $("#submit").prop('disabled',false)
-                      .html('<?=cclang("save")?>');
+                      .html('<?= cclang("save") ?>');
           $.each(json.alert, function(key, value) {
             var element = $('#' + key);
             $(element)

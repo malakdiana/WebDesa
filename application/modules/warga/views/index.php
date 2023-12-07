@@ -37,7 +37,7 @@
 							<th>Nama lengkap</th>
 							<th>Tempat lahir</th>
 							<th>Tgl lahir</th>
-              <th>Kategori Usia</th>
+                            <th>Kategori Usia</th>
 							<th>Jenis kelamin</th>
 							<th>Agama</th>
 							<th>Pendidikan</th>

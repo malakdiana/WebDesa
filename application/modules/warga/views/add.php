@@ -143,12 +143,7 @@
             --->
             <!-- <?= is_select("personal", "nik_ibu", "NIK", "NIK"); ?>  -->
             <input type="text" class="form-control form-control-sm" placeholder="NIK IBU" name="nik_ibu" id="nik_ibu">
-            <select name="nik_ibu" id="nik_ibu" placeholder="Select" class="form-control form-control-sm select2 select2-hidden-accessible">
             
-            <?php foreach($list_nik_ibu as $row){?>
-                <option value="<?=$row->NIK?>"><?=$row->NIK?> - <?=$row->nama_lengkap?></option>
-                <?php } ?>
-            </select>
           </div>
 
           <div class="form-group">
